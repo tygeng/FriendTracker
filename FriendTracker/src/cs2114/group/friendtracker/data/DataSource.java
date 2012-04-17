@@ -19,7 +19,9 @@ public class DataSource {
     private SQLiteDatabase database;
     private H dbHelper;
     private String[] allEventColumns = { H.E_ID, H.E_NAME, H.E_STIME,
-            H.E_ETIME, H.E_SDATE, H.E_EDATE, H.E_DAYS, H.E_OWNER };
+            H.E_ETIME, H.E_SDATE, H.E_EDATE, H.E_OWNER, H.E_DAYS[0],
+            H.E_DAYS[1], H.E_DAYS[2], H.E_DAYS[3], H.E_DAYS[4],
+            H.E_DAYS[5], H.E_DAYS[6] };
     private String[] allPersonColumns = { H.P_ID, H.P_NAME, H.P_PHONE };
 
     public DataSource(Context context) {
@@ -99,18 +101,8 @@ public class DataSource {
             createEvent(String name, Person owner, String startTime,
                     String endTime, String startDate, String endDate,
                     String days) {
-        ContentValues values = new ContentValues();
-        values.put(H.E_NAME, name);
-        values.put(H.E_OWNER, owner.getId());
-        values.put(H.E_STIME, startTime);
-        values.put(H.E_ETIME, endTime);
-        values.put(H.E_SDATE, startDate);
-        values.put(H.E_EDATE, endDate);
-        values.put(H.E_DAYS, days);
-        long eventId = database.insert(H.TABLE_EVENTS, null, values);
-
-        return new Event(eventId, name, owner, startTime, endTime,
-                startDate, endDate, days.toCharArray());
+        return createEvent(name, owner, startTime, endTime, startDate,
+                endDate, days.toCharArray());
 
     }
 
@@ -119,8 +111,15 @@ public class DataSource {
                     String endTime, String startDate, String endDate,
                     char[] days) {
 
-        return createEvent(name, owner, startTime, endTime, startDate,
-                endDate, new String(days));
+        long eventId =
+                database.insert(H.TABLE_EVENTS, null,
+                        eventToValues(new Event(0, name, owner,
+                                startTime, endTime, startDate, endDate,
+                                days)));
+
+        return new Event(eventId, name, owner, startTime, endTime,
+                startDate, endDate, days);
+
     }
 
     public void deleteEvent(Event e) {
@@ -132,11 +131,11 @@ public class DataSource {
     public void updateEvent(Event e) {
         long eventId = e.getId();
 
-        database.update(H.TABLE_PERSONS, eventToValue(e), H.P_ID + " = "
+        database.update(H.TABLE_PERSONS, eventToValues(e), H.P_ID + " = "
                 + eventId, null);
     }
 
-    private ContentValues eventToValue(Event e) {
+    private ContentValues eventToValues(Event e) {
         ContentValues values = new ContentValues();
         values.put(H.E_NAME, e.getName());
         values.put(H.E_OWNER, e.getOwner().getId());
@@ -144,7 +143,10 @@ public class DataSource {
         values.put(H.E_ETIME, e.getEndTime());
         values.put(H.E_SDATE, e.getStartDate());
         values.put(H.E_EDATE, e.getEndDate());
-        values.put(H.E_DAYS, new String(e.getDays()));
+        char[] days = e.getDays();
+        for (int i = 0; i < 7; i++) {
+            values.put(H.E_DAYS[i], days[i] == '*' ? 0 : 1);
+        }
         return values;
     }
 
@@ -153,10 +155,10 @@ public class DataSource {
      *            0: Sunday, 1: Monday ... 6:Saturady.
      * @return
      */
-    public List<Event> getEventsByDay(Person p, int day, String date) {
+    public List<Event> getEventsByDay(Person p, int day,
+            String currentDate) {
         // database.query(H.TABLE_EVENTS, allEventColumns, H.E_OWNER + " = " +
         // p.getId() , null, null, null/*having*/, H.E_STIME);
-
 
         return null;
     }
