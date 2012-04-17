@@ -5,6 +5,11 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+/**
+ * The helper class to create a SQLite database.
+ * @author Tianyu Geng (tony1)
+ * @version Apr 16, 2012
+ */
 public class SQLiteHelper extends SQLiteOpenHelper {
 
 	public static final String TABLE_EVENTS = "events";
