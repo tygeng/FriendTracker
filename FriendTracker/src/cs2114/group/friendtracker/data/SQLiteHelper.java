@@ -7,6 +7,7 @@ import android.util.Log;
 
 /**
  * The helper class to create a SQLite database.
+ *
  * @author Tianyu Geng (tony1)
  * @version Apr 16, 2012
  */
