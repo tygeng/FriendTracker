@@ -12,7 +12,7 @@ public class Event {
     private final long id;
     private String name;
 
-    private Person owner;
+    private long owner;
 
     private String startTime;
 
@@ -39,18 +39,18 @@ public class Event {
      * @param owner
      *            The person who owns this event
      * @param startTime
-     *            The time when this event starts
+     *            The time when this event starts Format: HHMM
      * @param endTime
-     *            The time when this event ends
+     *            The time when this event ends Format: HHMM
      * @param startDate
-     *            The first date of this event
+     *            The first date of this event Format: YYYYMMDD
      * @param endDate
-     *            The last date of this event
+     *            The last date of this event Format: YYYYMMDD
      * @param days
-     *            The days of the week this event runs
+     *
      */
 
-    public Event(long id, String name, Person owner, String startTime,
+    public Event(long id, String name, long owner, String startTime,
             String endTime, String startDate, String endDate, char[] days) {
         this.id = id;
         this.name = name;
@@ -95,7 +95,7 @@ public class Event {
      *
      * @return the owner
      */
-    public Person getOwner() {
+    public long getOwner() {
         return owner;
     }
 
@@ -105,7 +105,7 @@ public class Event {
      * @param owner
      *            the owner to set
      */
-    public void setOwner(Person owner) {
+    public void setOwner(long owner) {
         this.owner = owner;
     }
 
@@ -202,6 +202,13 @@ public class Event {
      */
     public void setDays(char[] days) {
         this.days = days;
+    }
+
+    public String toString() {
+        return "id=" + id + " name=" + name + " owner=" + owner
+                + " sTime=" + startTime + " eTime=" + endTime + " sDate="
+                + startDate + " eDate=" + endDate + " days="
+                + new String(days);
     }
 
 }

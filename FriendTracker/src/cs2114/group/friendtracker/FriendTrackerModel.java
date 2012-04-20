@@ -1,6 +1,6 @@
 package cs2114.group.friendtracker;
 
-import java.io.Serializable;
+
 import java.util.List;
 
 /**
@@ -9,7 +9,7 @@ import java.util.List;
  *  @author  Chris Schweinhart (schwein)
  *  @version 2012.04.15
  */
-public class FriendTrackerModel implements Serializable
+public class FriendTrackerModel
 {
     // Instance fields
     private List<Person> contacts;

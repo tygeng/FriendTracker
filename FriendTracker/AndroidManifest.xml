@@ -5,6 +5,7 @@
     android:versionName="1.0" >
 
     <uses-sdk android:minSdkVersion="15" />
+    <instrumentation android:targetPackage="cs2114.group.friendtracker" android:name="android.test.InstrumentationTestRunner"></instrumentation>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 
     <application
