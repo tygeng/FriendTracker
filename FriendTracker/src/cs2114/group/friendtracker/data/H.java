@@ -21,9 +21,14 @@ public class H extends SQLiteOpenHelper {
     public static final String E_ETIME = "endtime";
     public static final String E_SDATE = "startdate";
     public static final String E_EDATE = "enddate";
-    public static final String[] E_DAYS = { null,"sunday", "monday",
+    public static final String[] E_DAYS = { null, "sunday", "monday",
             "tuesday", "wednesday", "thursday", "friday", "saturday" };
 
+    /**
+     * The serial number of columns in the two tables. This numbers depends on
+     * the column parameter in query. So maybe these should be put into the
+     * DataSource class rather than here.
+     */
     public static final int NO_ID = 0;
     public static final int NO_NAME = 1;
     public static final int NO_OWNER_PHONE = 2;
@@ -31,7 +36,7 @@ public class H extends SQLiteOpenHelper {
     public static final int NO_ETIME = 4;
     public static final int NO_SDATE = 5;
     public static final int NO_EDATE = 6;
-    public static final int[] NO_DAYS = {0,7,8,9,10,11,12,13};
+    public static final int[] NO_DAYS = { 0, 7, 8, 9, 10, 11, 12, 13 };
 
     public static final String TABLE_PERSONS = "persons";
     public static final String P_ID = "_id";
@@ -50,18 +55,15 @@ public class H extends SQLiteOpenHelper {
             + " text not null, " + E_OWNER + " integer not null, "
             + E_STIME + " text not null, " + E_ETIME + " text not null, "
             + E_SDATE + " text not null, " + E_EDATE + " text not null, "
-            + E_DAYS[1] + " integer, "
-            + E_DAYS[2] + " integer, "
-            + E_DAYS[3] + " integer, "
-            + E_DAYS[4] + " integer, "
-            + E_DAYS[5] + " integer, "
-            + E_DAYS[6] + " integer, "
-            + E_DAYS[7] + " integer"
-            + ");";
+            + E_DAYS[1] + " integer, " + E_DAYS[2] + " integer, "
+            + E_DAYS[3] + " integer, " + E_DAYS[4] + " integer, "
+            + E_DAYS[5] + " integer, " + E_DAYS[6] + " integer, "
+            + E_DAYS[7] + " integer" + ");";
 
     private static final String CREATE_PERSON_TABLE = "create table "
-            + TABLE_PERSONS + "( " + P_ID + " integer primary key autoincrement, "
-            + P_NAME + " text not null, " + P_PHONE + " integer" + ");";
+            + TABLE_PERSONS + "( " + P_ID
+            + " integer primary key autoincrement, " + P_NAME
+            + " text not null, " + P_PHONE + " integer" + ");";
 
     /**
      * The constructor for this helper.
