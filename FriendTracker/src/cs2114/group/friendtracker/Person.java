@@ -100,6 +100,7 @@ public class Person {
     }
 
     public String toString() {
-        return "id="+id+" name="+ name;
+        return "Name: "+name + "\n" + "Phone number: " + phoneNumber;
+        //return "id="+id+" name="+ name;
     }
 }
