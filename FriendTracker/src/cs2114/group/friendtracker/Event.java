@@ -204,6 +204,25 @@ public class Event {
         this.days = days;
     }
 
+    public String getTimeInterval() {
+        return formatTime(startTime)+" - "+formatTime(endTime);
+    }
+
+    private String formatTime(String time) {
+        int hour = Integer.parseInt(time.substring(0, 2));
+        String aux = " AM";
+        if (hour == 24) {
+            hour = 0;
+        }
+        if (hour > 11) {
+            aux = " PM";
+            if (hour > 12) {
+                hour -= 12;
+            }
+        }
+        return hour+":"+time.substring(2)+aux;
+    }
+
     public String toString() {
         return "id=" + id + " name=" + name + " owner=" + owner
                 + " sTime=" + startTime + " eTime=" + endTime + " sDate="

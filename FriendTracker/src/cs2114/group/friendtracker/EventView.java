@@ -58,15 +58,15 @@ public class EventView extends View {
         Random rand = new Random(e.getOwner());
 
         int h = rand.nextInt(360);
-        Log.d("Float Hue", "ownerId=" + e.getOwner() + " h=" + h);
+        //Log.d("Float Hue", "ownerId=" + e.getOwner() + " h=" + h);
         fill = new Paint();
         stroke = new Paint();
         titleText = new Paint(Paint.ANTI_ALIAS_FLAG);
         timeText = new Paint(Paint.ANTI_ALIAS_FLAG);
 
-        fill.setColor(Color.HSVToColor(new float[] { h, 0.5f, 0.9f }));
+        fill.setColor(Color.HSVToColor(200,new float[] { h, 0.5f, 0.9f }));
         fill.setStyle(Style.FILL);
-        int c = Color.HSVToColor(new float[] { h, 0.8f, 0.4f });
+        int c = Color.HSVToColor(new float[] { h, 0.8f, 0.3f });
         stroke.setColor(c);
         stroke.setStyle(Style.STROKE);
         stroke.setStrokeWidth(3);
@@ -79,13 +79,13 @@ public class EventView extends View {
 
     public void onMeasure(int width, int height) {
 
-        setMeasuredDimension(Math.max(width, (int) (200 * dm.density)),
+        setMeasuredDimension(Math.max(width, (int) (180 * dm.density)),
                 eventHeight());
 
         // Log.d("Tracker-Test", "input width=" + width + " height="
         // + height);
-        Log.d("Tracker-Test", "output width=" + width + " height="
-                + eventHeight());
+        //Log.d("Tracker-Test", "output width=" + width + " height="
+        //        + eventHeight());
 
     }
 
@@ -99,15 +99,15 @@ public class EventView extends View {
 
         canvas.drawText(e.getName(), 5 * dm.density, 20 * dm.density,
                 titleText);
-        canvas.drawText(e.getStartTime() + "-" + e.getEndTime(),
+        canvas.drawText(e.getTimeInterval(),
                 5 * dm.density, 40 * dm.density, timeText);
-        Log.d("Tracker-Test", "inside onDraw");
+        //Log.d("Tracker-Test", "inside onDraw");
 
     }
 
     public boolean onTouchEvent(MotionEvent e) {
         if (e.getAction() == MotionEvent.ACTION_UP) {
-            Log.d("EventTouch", "Event is touched" + e.toString());
+         //   Log.d("EventTouch", "Event is touched" + e.toString());
             return false;
         }
         return true;
