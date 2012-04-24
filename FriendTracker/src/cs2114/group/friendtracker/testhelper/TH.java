@@ -29,7 +29,7 @@ public class TH {
         List<Event> events = new ArrayList<Event>();
         for (int i = 0; i < 5; i++) {
             int t = rand.nextInt(15);
-            events.add(new Event(i, names[rand.nextInt(5)], i, times[t],
+            events.add(new Event(i, names[rand.nextInt(5)], 1, times[t],
                     times[t + 2], "20120101", "20121231", "1111111"
                             .toCharArray()));
         }

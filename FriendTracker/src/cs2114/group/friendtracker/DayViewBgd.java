@@ -29,7 +29,7 @@ public class DayViewBgd extends View {
     private Paint thickLines;
     private Paint thinLines;
 
-    private static final int HOUR_HEIGHT = 80;
+
 
     /**
      * Constructor for DayViewBgd.
@@ -55,7 +55,7 @@ public class DayViewBgd extends View {
      */
     public void onMeasure(int width, int height) {
 
-        setMeasuredDimension(width, (int) (24 * HOUR_HEIGHT * dm.density));
+        setMeasuredDimension(width, (int) (24 * DayActivity.HOUR_HEIGHT * dm.density));
     }
 
     /**
@@ -67,10 +67,10 @@ public class DayViewBgd extends View {
         thinLines = new Paint();
 
         timeText.setColor(Color.WHITE);
-        timeText.setTextSize(18);
+        timeText.setTextSize(12*dm.density);
         thickLines.setColor(Color.WHITE);
         thinLines.setColor(Color.GRAY);
-        thickLines.setStrokeWidth(2);
+        thickLines.setStrokeWidth(1*dm.density);
         thinLines.setStrokeWidth(0);
     }
 
@@ -86,8 +86,8 @@ public class DayViewBgd extends View {
         int textYOffset =
                 Math.round(dm.density * (timeText.getTextSize()));
         for (int i = 0; i < 24; i++) {
-            int y = Math.round(dm.density * i * HOUR_HEIGHT);
-            int y2 = Math.round(dm.density * (i + 0.5f) * HOUR_HEIGHT);
+            int y = Math.round(dm.density * i * DayActivity.HOUR_HEIGHT);
+            int y2 = Math.round(dm.density * (i + 0.5f) * DayActivity.HOUR_HEIGHT);
             canvas.drawLine(0, y, width, y, thickLines);
             canvas.drawText(formatTime(i), textXOffset, y + textYOffset,
                     timeText);

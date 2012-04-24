@@ -1,12 +1,14 @@
 package cs2114.group.friendtracker;
 
+import android.view.View;
+
+import android.widget.TextView;
+
 import android.widget.ScrollView;
 
 import android.widget.RelativeLayout;
 
 import android.os.Bundle;
-
-import cs2114.group.friendtracker.testhelper.TH;
 
 import android.app.Activity;
 
@@ -21,23 +23,42 @@ public class DayActivity extends Activity {
     private RelativeLayout rl;
     private DayViewBgd dv;
     private ScrollView sv;
+    private TextView nameText;
+    private TextView dateText;
+    /**
+     * The height of an hour.
+     */
+    public static final int HOUR_HEIGHT = 80;
+    /**
+     * The left margin for the events.
+     */
+    public static final int EVENT_LEFT_MARGIN = 60;
 
     /**
      * Called when the activity is created.
      *
-     * @param savedInstanceState state
+     * @param savedInstanceState
+     *            state
      */
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        model = new DayModel(TH.getEvents());
 
-        sv = new ScrollView(this);
+        long ownerId = getIntent().getLongExtra("ownerId", 1);
+        model = new DayModel(this, ownerId);
+
+        // initialize the GUI
+        this.setContentView(R.layout.dayview);
+        sv = (ScrollView) findViewById(R.id.sv);
         sv.setSmoothScrollingEnabled(true);
-        dv = new DayViewBgd(this);
+
+        // for names and date
+        nameText = (TextView) findViewById(R.id.nameText);
+        dateText = (TextView) findViewById(R.id.dateText);
+
+        // inside scrollview
         rl = new RelativeLayout(this);
         sv.addView(rl);
-        this.setContentView(sv);
-
+        dv = new DayViewBgd(this);
         fillContents();
 
     }
@@ -50,7 +71,10 @@ public class DayActivity extends Activity {
         rl.removeAllViews();
         rl.addView(dv);
 
-        if (!model.getEvents().isEmpty()) {
+        dateText.setText(model.getDate());
+        if (model.getEvents() != null && !model.getEvents().isEmpty()) {
+
+            nameText.setText(model.getOwnerName());
 
             final EventView headEv =
                     new EventView(this, model.getEvents().get(0));
@@ -78,6 +102,60 @@ public class DayActivity extends Activity {
                             headEv.eventPos() - headEv.leftMargin());
                 }
             });
+
         }
+
+    }
+
+    /**
+     * Standard onResume
+     *
+     * @param savedBundle
+     */
+    public void onResume(Bundle savedBundle) {
+        fillContents();
+    }
+
+    /**
+     * The addButton is clicked.
+     *
+     * @param addButton
+     *            the Button
+     */
+    public void addButtonClicked(View addButton) {
+        // do something
+    }
+
+    /**
+     * The previousDay Button is clicked.
+     *
+     * @param previousButton
+     *            the button
+     */
+    public void previousButtonClicked(View previousButton) {
+        model.previousDay();
+        fillContents();
+    }
+
+    /**
+     * The nextDay Button is clicked.
+     *
+     * @param nextButton
+     *            the button
+     */
+    public void nextButtonClicked(View nextButton) {
+        model.nextDay();
+        fillContents();
+    }
+
+    /**
+     * The today button is clicked.
+     *
+     * @param todayButton
+     *            the button
+     */
+    public void todayButtonClicked(View todayButton) {
+        model.today();
+        fillContents();
     }
 }

@@ -13,6 +13,7 @@ import android.util.DisplayMetrics;
 import android.view.MotionEvent;
 import android.view.View;
 
+
 /**
  *
  * @author Tianyu
@@ -25,14 +26,7 @@ public class EventView extends View {
     private Paint titleText;
     private Paint timeText;
     private DisplayMetrics dm;
-    /**
-     * The height of an hour.
-     */
-    public static final int HOUR_HEIGHT = 80;
-    /**
-     * The desired amount of left margin.
-     */
-    public static final int LEFT_MARGIN = 60;
+
 
     /**
      * Constructor for EventView
@@ -60,7 +54,7 @@ public class EventView extends View {
      * @return the left margin
      */
     public int leftMargin() {
-        return (int) (LEFT_MARGIN * dm.density);
+        return (int) (DayActivity.EVENT_LEFT_MARGIN * dm.density);
     }
 
     /**
@@ -83,10 +77,10 @@ public class EventView extends View {
         int c = Color.HSVToColor(new float[] { h, 0.8f, 0.2f });
         stroke.setColor(c);
         stroke.setStyle(Style.STROKE);
-        stroke.setStrokeWidth(3);
+        stroke.setStrokeWidth(3*dm.density);
 
-        titleText.setTextSize(24);
-        timeText.setTextSize(18);
+        titleText.setTextSize(16*dm.density);
+        timeText.setTextSize(12*dm.density);
         titleText.setColor(c);
         timeText.setColor(c);
     }
@@ -157,7 +151,7 @@ public class EventView extends View {
     public int eventPos() {
         float sMin = Integer.parseInt(e.getStartTime().substring(2));
         float sHour = Integer.parseInt(e.getStartTime().substring(0, 2));
-        return Math.round((sHour + sMin / 60) * HOUR_HEIGHT * dm.density);
+        return Math.round((sHour + sMin / 60) * DayActivity.HOUR_HEIGHT * dm.density);
     }
 
     /**
@@ -173,6 +167,6 @@ public class EventView extends View {
         // Log.d("Tracker-Test",
         // "sMin="+sMin+" eMin="+eMin+" sHour"+sHour+" eHour"+eHour);
         float deltaT = eHour - sHour + (eMin - sMin) / 60;
-        return Math.round(deltaT * HOUR_HEIGHT * dm.density);
+        return Math.round(deltaT * DayActivity.HOUR_HEIGHT * dm.density);
     }
 }
