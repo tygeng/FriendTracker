@@ -1,6 +1,6 @@
 package cs2114.group.friendtracker;
 
-import java.io.Serializable;
+
 import java.util.List;
 
 /**

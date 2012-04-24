@@ -204,10 +204,22 @@ public class Event {
         this.days = days;
     }
 
+    /**
+     * Get the well formatted String for the time interval of this event.
+     *
+     * @return the formated time
+     */
     public String getTimeInterval() {
-        return formatTime(startTime)+" - "+formatTime(endTime);
+        return formatTime(startTime) + " - " + formatTime(endTime);
     }
 
+    /**
+     * Helper for formatting time.
+     *
+     * @param time
+     *            the time to be formatted
+     * @return the formmated time
+     */
     private String formatTime(String time) {
         int hour = Integer.parseInt(time.substring(0, 2));
         String aux = " AM";
@@ -220,9 +232,14 @@ public class Event {
                 hour -= 12;
             }
         }
-        return hour+":"+time.substring(2)+aux;
+        return hour + ":" + time.substring(2) + aux;
     }
 
+    /**
+     * Standard toString();
+     *
+     * @return the String
+     */
     public String toString() {
         return "id=" + id + " name=" + name + " owner=" + owner
                 + " sTime=" + startTime + " eTime=" + endTime + " sDate="
