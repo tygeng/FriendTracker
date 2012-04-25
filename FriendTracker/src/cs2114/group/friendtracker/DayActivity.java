@@ -1,6 +1,7 @@
 package cs2114.group.friendtracker;
 
 import android.view.View;
+import cs2114.group.friendtracker.testhelper.DatabaseFiller;
 
 import android.widget.TextView;
 
@@ -43,7 +44,12 @@ public class DayActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        long ownerId = getIntent().getLongExtra("ownerId", 1);
+        DatabaseFiller filler = new DatabaseFiller(this);
+        filler.fill();
+        long ownerId = filler.getPersonId(1);
+
+
+        //long ownerId = getIntent().getLongExtra("ownerId", 1);
         model = new DayModel(this, ownerId);
 
         // initialize the GUI
@@ -70,11 +76,11 @@ public class DayActivity extends Activity {
     private void fillContents() {
         rl.removeAllViews();
         rl.addView(dv);
-
+        nameText.setText(model.getOwnerName());
         dateText.setText(model.getDate());
         if (model.getEvents() != null && !model.getEvents().isEmpty()) {
 
-            nameText.setText(model.getOwnerName());
+
 
             final EventView headEv =
                     new EventView(this, model.getEvents().get(0));

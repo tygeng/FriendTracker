@@ -278,10 +278,11 @@ public class DataSource {
             int dayOfWeek) {
 
         Cursor cursor =
-                database.query(H.TABLE_EVENTS, allEventColumns, H.E_SDATE
-                        + " <= " + date + " and " + H.E_EDATE + " >= "
-                        + date + " and " + H.E_DAYS[dayOfWeek] + " = 1",
-                        null, null, null, H.E_STIME);
+                database.query(H.TABLE_EVENTS, allEventColumns, H.E_OWNER
+                        + " = " + personId + " and " + H.E_SDATE + " <= "
+                        + date + " and " + H.E_EDATE + " >= " + date
+                        + " and " + H.E_DAYS[dayOfWeek] + " = 1", null,
+                        null, null, H.E_STIME);
         // *********************************************
         Log.d(TAG, "Cursor.getCount() = " + cursor.getCount());
         // ---------------------------------------------

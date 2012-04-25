@@ -3,6 +3,8 @@
  */
 package cs2114.group.friendtracker;
 
+import android.util.Log;
+
 import android.content.Context;
 
 import cs2114.group.friendtracker.data.DataSource;
@@ -24,6 +26,8 @@ public class DayModel {
     private GregorianCalendar gc;
     private List<Event> events;
     private DataSource src;
+    private static final String[] DAYS = { null, "Sun", "Mon", "Tue",
+            "Wed", "Thu", "Fri", "Sat" };
 
     // /**
     // * The constructor for DayModel.
@@ -72,7 +76,7 @@ public class DayModel {
         src = new DataSource(c);
         src.open();
         this.owner = src.getPerson(ownerId);
-
+        Log.d("DayModel","Person="+this.owner);
         src.close();
         updateEvents();
 
@@ -89,6 +93,7 @@ public class DayModel {
         events =
                 src.getEventsForDay(owner.getId(), getDateForQuery(),
                         gc.get(DAY_OF_WEEK));
+        Log.d("DayModel","events.size="+events.size());
         src.close();
     }
 
@@ -98,18 +103,20 @@ public class DayModel {
      * @return the owner's name
      */
     public String getOwnerName() {
-
+        if (owner == null) {
+            return null;
+        }
         return owner.getName();
     }
 
     /**
-     * Get the date String used to query the datebase.
+     * Get the date String used to query the database.
      *
      * @return the date String
      */
     private String getDateForQuery() {
-        return gc.get(YEAR) + monthConverter(gc.get(MONTH))
-                + gc.get(DAY_OF_MONTH);
+        return gc.get(YEAR) + converter(gc.get(MONTH) + 1)
+                + converter(gc.get(DAY_OF_MONTH));
     }
 
     /**
@@ -119,7 +126,7 @@ public class DayModel {
      */
     public String getDate() {
         return (gc.get(MONTH) + 1) + "/" + gc.get(DAY_OF_MONTH) + "/"
-                + gc.get(YEAR);
+                + gc.get(YEAR) + " " + DAYS[gc.get(DAY_OF_WEEK)];
     }
 
     /**
@@ -129,16 +136,13 @@ public class DayModel {
      *            the integer
      * @return the month String
      */
-    private String monthConverter(int i) {
-        int j = i + 1;
-        String result;
-        if (j < 10) {
-            ;
-            result = "0" + j;
+    private String converter(int i) {
 
+        if (i < 10) {
+            return "0" + i;
         }
-        result = Integer.toString(j);
-        return result;
+        return Integer.toString(i);
+
     }
 
     /**
