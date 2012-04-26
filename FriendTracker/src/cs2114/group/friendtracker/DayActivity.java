@@ -1,7 +1,6 @@
 package cs2114.group.friendtracker;
 
 import android.view.View;
-import cs2114.group.friendtracker.testhelper.DatabaseFiller;
 
 import android.widget.TextView;
 
@@ -44,12 +43,11 @@ public class DayActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        DatabaseFiller filler = new DatabaseFiller(this);
-        filler.fill();
-        long ownerId = filler.getPersonId(1);
+        // DatabaseFiller filler = new DatabaseFiller(this);
+        // filler.fill();
+        // long ownerId = filler.getPersonId(1);
 
-
-        //long ownerId = getIntent().getLongExtra("ownerId", 1);
+        long ownerId = getIntent().getLongExtra("ownerId", 1);
         model = new DayModel(this, ownerId);
 
         // initialize the GUI
@@ -80,8 +78,6 @@ public class DayActivity extends Activity {
         dateText.setText(model.getDate());
         if (model.getEvents() != null && !model.getEvents().isEmpty()) {
 
-
-
             final EventView headEv =
                     new EventView(this, model.getEvents().get(0));
             RelativeLayout.LayoutParams lp =
@@ -90,7 +86,7 @@ public class DayActivity extends Activity {
 
             rl.addView(headEv, lp);
             for (int i = 1; i < model.getEvents().size(); i++) {
-                // Log.d("Tracker-Test", "event="+e);
+                // Log.d("DayActivity", "event="+e);
 
                 EventView ev =
                         new EventView(this, model.getEvents().get(i));
@@ -99,7 +95,7 @@ public class DayActivity extends Activity {
                 lp2.setMargins(ev.leftMargin(), ev.eventPos(), 0, 0);
                 rl.addView(ev, lp2);
             }
-            // Log.d("Scroll", "Scroll Y=" + headEv.eventPos());
+            // Log.d("DayActivity", "Scroll Y=" + headEv.eventPos());
             // Scroll to the first Event.
             sv.post(new Runnable() {
                 @Override

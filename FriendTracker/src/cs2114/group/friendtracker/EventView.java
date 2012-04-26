@@ -3,7 +3,7 @@
  */
 package cs2114.group.friendtracker;
 
-import android.util.Log;
+
 
 import java.util.Random;
 import android.graphics.Color;

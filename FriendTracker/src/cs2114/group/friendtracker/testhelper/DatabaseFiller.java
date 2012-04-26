@@ -10,13 +10,7 @@ import android.content.Context;
 
 import cs2114.group.friendtracker.data.DataSource;
 
-import java.util.ArrayList;
-
 import java.util.Random;
-
-import cs2114.group.friendtracker.Event;
-
-import java.util.List;
 
 /**
  *
@@ -28,9 +22,18 @@ public class DatabaseFiller {
     private GregorianCalendar gc;
     private int numOfDays;
     private Random rand;
+    /**
+     * Person Strings
+     */
     public static final String[] PERSONS = { "Adam", "Brandon", "Claire",
             "Dolton", "Ethan", "Frank", "Grant" };// 8 names
+    /**
+     * Minutes Strings
+     */
     public static final String[] MINUTES = { "00", "15", "30", "45" };
+    /**
+     * Events Strings
+     */
     public static final String[] EVENTS = { "Engl 3764", "CS 2114",
             "CS 2505", "CS 2104", "Math 2224", "Math 3124", "Math 3144",
             "Stat 4714" };// 8 events
@@ -75,10 +78,20 @@ public class DatabaseFiller {
         rand.setSeed(seed);
     }
 
+    /**
+     * The constructor for the filler.
+     *
+     * @param c
+     *            the context (Activity) used to be passed to the DataSource
+     *            class
+     */
     public DatabaseFiller(Context c) {
         this(c, new GregorianCalendar(), 10);
     }
 
+    /**
+     * Fill the database with specified requirements in the constructor.
+     */
     public void fill() {
         src.open();
         src.clearAll();
@@ -115,10 +128,24 @@ public class DatabaseFiller {
         src.close();
     }
 
+    /**
+     * Get the persons ID.
+     *
+     * @param i
+     *            the person's index
+     * @return the person's id
+     */
     public long getPersonId(int i) {
         return ids[i];
     }
 
+    /**
+     * Convert an int to a String for query.
+     *
+     * @param i
+     *            the int
+     * @return the converted String
+     */
     private String converter(int i) {
 
         if (i < 10) {
@@ -130,6 +157,13 @@ public class DatabaseFiller {
 
     }
 
+    /**
+     * Create a String for query by an offset of days from the calendar.
+     *
+     * @param offsetDay
+     *            the number of days offset from the date in the calendar
+     * @return the date String for query
+     */
     private String toDateString(int offsetDay) {
         gc.add(DATE, offsetDay);
         String result =
@@ -138,28 +172,4 @@ public class DatabaseFiller {
         gc.add(DATE, -offsetDay);
         return result;
     }
-    // public static String[] names = { "cs2114", "cs2104", "math 3124",
-    // "math 2224", "engl 3764" };
-    // public static String[] times = { "0800", "0815", "0830", "0845",
-    // "1000", "1015", "1030", "1045", "1200", "1215", "1230",
-    // "1245", "1400", "1415", "1430", "1445", "1600", "1615",
-    // "1630", "1645" };
-    // public static Random rand = new Random();
-    // public static List<Event> getEvents() {
-    //
-    // List<Event> events = new ArrayList<Event>();
-    // for (int i = 0; i < 5; i++) {
-    // int t = rand.nextInt(15);
-    // events.add(new Event(i, names[rand.nextInt(5)], 1, times[t],
-    // times[t + 2], "20120101", "20121231", "1111111"
-    // .toCharArray()));
-    // }
-    // return events;
-    // }
-    // public static Event getEvent() {
-    // int t = rand.nextInt(15);
-    // return new Event(1, names[rand.nextInt(5)], 1, times[t],
-    // times[t + 2], "20120101", "20121231", "1111111"
-    // .toCharArray());
-    // }
 }
