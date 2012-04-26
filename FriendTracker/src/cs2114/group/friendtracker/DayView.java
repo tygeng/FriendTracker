@@ -69,7 +69,7 @@ public class DayView extends View {
         timeText.setTextSize(18);
         thickLines.setColor(Color.WHITE);
         thinLines.setColor(Color.GRAY);
-        thickLines.setStrokeWidth(2);
+        thickLines.setStrokeWidth(2*(int)dm.density);
         thinLines.setStrokeWidth(0);
     }
 

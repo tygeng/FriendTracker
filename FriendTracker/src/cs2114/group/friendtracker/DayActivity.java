@@ -1,5 +1,7 @@
 package cs2114.group.friendtracker;
 
+
+
 import android.view.View;
 
 import android.widget.TextView;
@@ -43,9 +45,9 @@ public class DayActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // DatabaseFiller filler = new DatabaseFiller(this);
-        // filler.fill();
-        // long ownerId = filler.getPersonId(1);
+//         DatabaseFiller filler = new DatabaseFiller(this);
+//         filler.fill();
+//         long ownerId = filler.getPersonId(1);
 
         long ownerId = getIntent().getLongExtra("ownerId", 1);
         model = new DayModel(this, ownerId);
