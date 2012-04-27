@@ -398,7 +398,7 @@ public class DataSource {
     public void updateEvent(Event e) {
         long eventId = e.getId();
 
-        database.update(H.TABLE_PERSONS, eventToValues(e), H.P_ID + " = "
+        database.update(H.TABLE_EVENTS, eventToValues(e), H.E_ID + " = "
                 + eventId, null);
     }
 
