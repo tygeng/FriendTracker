@@ -119,7 +119,8 @@ public class DayActivity extends Activity {
      *
      * @param savedBundle
      */
-    public void onResume(Bundle savedBundle) {
+    public void onResume() {
+        super.onResume();
         fillContents();
     }
 

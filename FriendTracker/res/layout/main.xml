@@ -8,32 +8,15 @@
         android:id="@+id/group"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" >
-
+
         <Button
-            android:id="@+id/add"
+            android:id="@+id/addFriend"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Add New" 
-            android:onClick="onClickAdd"/>
-
-        <Button
-            android:id="@+id/delete"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Delete First" 
-            android:onClick="onClickDelete"/>
+            android:text="Add New" />
         
     </LinearLayout>
 
-    <EditText
-        android:id="@+id/textBox"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName" >
-
-        <requestFocus />
-    </EditText>
-
     <ListView
         android:id="@android:id/list"
         android:layout_width="fill_parent"

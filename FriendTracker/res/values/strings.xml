@@ -3,5 +3,12 @@
 
     <string name="hello">Hello World, FriendTrackerActivity!</string>
     <string name="app_name">FriendTracker</string>
+    
+    <string-array name="menu">
+        <item>Edit</item>
+        <item>Delete</item>
+        <item>View</item>
+        <item>Cancel</item>
+    </string-array>
 
 </resources>

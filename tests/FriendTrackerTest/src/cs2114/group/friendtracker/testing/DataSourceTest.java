@@ -52,6 +52,9 @@ public class DataSourceTest extends AndroidTestCase {
         assertEquals("event1", e2.getName());
         Event e3 = src.getEvent(e1.getId());
         assertEquals("event1", e3.getName());
+        e1.setName("newEvent1");
+        src.updateEvent(e1);
+        assertEquals("newEvent1", e1.getName());
         src.deleteEvent(e1);
         assertNull(src.getEvent(e1.getId()));
         assertEquals(0, src.getEventsForDay(1, "20120427", 2).size());
@@ -92,6 +95,9 @@ public class DataSourceTest extends AndroidTestCase {
 
         Person p2 = src.getPerson(p1.getId());
         assertEquals("person1", p2.getName());
+        p1.setName("newPerson1");
+        src.updatePerson(p1);
+        assertEquals("newPerson1", p1.getName());
         src.deletePerson(p1);
         assertNull(src.getPerson(p1.getId()));
         assertEquals(0, src.getAllPersons().size());
