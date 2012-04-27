@@ -297,6 +297,47 @@ public class DataSource {
     }
 
     /**
+     * Get the list of all events for a person by a persons id.
+     *
+     * @param personId
+     *            the id to identify the person
+     * @return the full list of events
+     */
+    public List<Event> getEventsForPerson(long personId) {
+        Cursor cursor =
+                database.query(H.TABLE_EVENTS, allEventColumns, H.E_OWNER
+                        + " = " + personId, null, null, null, H.E_SDATE);
+        // *********************************************
+        Log.d(TAG, "Cursor.getCount() = " + cursor.getCount());
+        // ---------------------------------------------
+        List<Event> result = new ArrayList<Event>();
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+            result.add(cursorToEvent(cursor));
+            cursor.moveToNext();
+        }
+        cursor.close();
+        return result;
+    }
+
+    /**
+     * Get an event by the id.
+     *
+     * @param id
+     *            the id of the event
+     * @return the event
+     */
+    public Event getEvent(long id) {
+        Cursor cursor =
+                database.query(H.TABLE_EVENTS, allEventColumns, H.E_ID
+                        + " = " + id, null, null, null, null);
+        cursor.moveToFirst();
+        Event e = cursorToEvent(cursor);
+        cursor.close();
+        return e;
+    }
+
+    /**
      * Get a person by the id.
      *
      * @param id
