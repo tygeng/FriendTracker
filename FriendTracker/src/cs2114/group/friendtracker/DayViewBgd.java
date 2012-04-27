@@ -19,6 +19,8 @@ import android.view.View;
  * The background for day schedule view.
  *
  * @author Tianyu Geng (tony1)
+ * @author Chris Schweinhart (schwein)
+ * @author Elena Nadolinski (elena)
  * @version Apr 21, 2012
  */
 public class DayViewBgd extends View {

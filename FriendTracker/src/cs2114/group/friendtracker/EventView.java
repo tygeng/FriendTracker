@@ -3,8 +3,6 @@
  */
 package cs2114.group.friendtracker;
 
-
-
 import java.util.Random;
 import android.graphics.Color;
 import android.content.Context;
@@ -15,10 +13,11 @@ import android.util.DisplayMetrics;
 import android.view.MotionEvent;
 import android.view.View;
 
-
 /**
  *
- * @author Tianyu
+ * @author Tianyu Geng (tony1)
+ * @author Chris Schweinhart (schwein)
+ * @author Elena Nadolinski (elena)
  * @version Apr 22, 2012
  */
 public class EventView extends View {
@@ -28,7 +27,6 @@ public class EventView extends View {
     private Paint titleText;
     private Paint timeText;
     private DisplayMetrics dm;
-
 
     /**
      * Constructor for EventView
@@ -79,10 +77,10 @@ public class EventView extends View {
         int c = Color.HSVToColor(new float[] { h, 0.8f, 0.2f });
         stroke.setColor(c);
         stroke.setStyle(Style.STROKE);
-        stroke.setStrokeWidth(3*dm.density);
+        stroke.setStrokeWidth(3 * dm.density);
 
-        titleText.setTextSize(16*dm.density);
-        timeText.setTextSize(12*dm.density);
+        titleText.setTextSize(16 * dm.density);
+        timeText.setTextSize(12 * dm.density);
         titleText.setColor(c);
         timeText.setColor(c);
     }
@@ -153,7 +151,8 @@ public class EventView extends View {
     public int eventPos() {
         float sMin = Integer.parseInt(e.getStartTime().substring(2));
         float sHour = Integer.parseInt(e.getStartTime().substring(0, 2));
-        return Math.round((sHour + sMin / 60) * DayActivity.HOUR_HEIGHT * dm.density);
+        return Math.round((sHour + sMin / 60) * DayActivity.HOUR_HEIGHT
+                * dm.density);
     }
 
     /**

@@ -9,6 +9,8 @@ import android.util.Log;
  * The helper class to create a SQLite database.
  *
  * @author Tianyu Geng (tony1)
+ * @author Chris Schweinhart (schwein)
+ * @author Elena Nadolinski
  * @version Apr 16, 2012
  */
 public class H extends SQLiteOpenHelper {

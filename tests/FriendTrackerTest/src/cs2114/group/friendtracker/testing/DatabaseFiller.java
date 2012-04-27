@@ -1,7 +1,7 @@
 /**
  *
  */
-package cs2114.group.friendtracker.testhelper;
+package cs2114.group.friendtracker.testing;
 
 import static java.util.Calendar.*;
 import java.util.GregorianCalendar;
@@ -14,7 +14,9 @@ import java.util.Random;
 
 /**
  *
- * @author Tianyu
+ * @author Tianyu Geng (tony1)
+ * @author Chris Schweinhart (schwein)
+ * @author Elena Naolinski (elena)
  * @version Apr 22, 2012
  */
 public class DatabaseFiller {

@@ -1,33 +1,29 @@
-/**
- *
- */
 package cs2114.group.friendtracker;
 
 import android.util.Log;
-
 import android.content.Context;
-
 import cs2114.group.friendtracker.data.DataSource;
-
 import java.util.GregorianCalendar;
-
 import java.util.List;
 import static java.util.GregorianCalendar.*;
 
 /**
- * The DayModel to model a day schedule.
+ * This class serves to model a day schedule.
  *
- * @author Tianyu Geng (tony1)
- * @version Apr 20, 2012
+ * @author  Chris Schweinhart (schwein)
+ * @author  Tianyu Geng (tony1)
+ * @author  Elena Nadolinski (elena)
+ * @version 2012.04.27
  */
-public class DayModel {
+public class DayModel
+{
+    // Instance fields
     private Person owner;
-
     private GregorianCalendar gc;
     private List<Event> events;
     private DataSource src;
-    private static final String[] DAYS = { null, "Sun", "Mon", "Tue",
-            "Wed", "Thu", "Fri", "Sat" };
+    private static final String[] DAYS = {null,"Sun","Mon","Tue",
+            "Wed","Thu","Fri","Sat"};
 
     // /**
     // * The constructor for DayModel.

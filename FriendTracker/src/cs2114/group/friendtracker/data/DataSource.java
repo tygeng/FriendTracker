@@ -27,7 +27,9 @@ import android.database.sqlite.SQLiteDatabase;
  * Event newEvent = src.createEvent(eventName, ownerId, startTime, endTime,
  * startDate, endDate, days);
  *
- * @author Tianyu
+ * @author Tianyu Geng (tony1)
+ * @author Chris Schweinhart (schwein)
+ * @author Elena Nadolinski (elena)
  * @version Apr 20, 2012
  */
 public class DataSource {
@@ -332,6 +334,9 @@ public class DataSource {
                 database.query(H.TABLE_EVENTS, allEventColumns, H.E_ID
                         + " = " + id, null, null, null, null);
         cursor.moveToFirst();
+        if (cursor.isAfterLast()) {
+            return null;
+        }
         Event e = cursorToEvent(cursor);
         cursor.close();
         return e;
@@ -349,6 +354,9 @@ public class DataSource {
                 database.query(H.TABLE_PERSONS, allPersonColumns, H.P_ID
                         + " = " + id, null, null, null, null);
         cursor.moveToFirst();
+        if (cursor.isAfterLast()) {
+            return null;
+        }
         Person p = cursorToPerson(cursor);
         cursor.close();
         return p;

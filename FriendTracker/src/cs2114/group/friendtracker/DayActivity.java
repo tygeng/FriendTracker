@@ -18,6 +18,8 @@ import android.app.Activity;
  * DayActivity to show the day schedule view.
  *
  * @author Tianyu Geng (tony1)
+ * @author Chris Schweinhart (schwein)
+ * @author Elena Nadolinski (elena)
  * @version Apr 23, 2012
  */
 public class DayActivity extends Activity {
@@ -80,6 +82,8 @@ public class DayActivity extends Activity {
         dateText.setText(model.getDate());
         if (model.getEvents() != null && !model.getEvents().isEmpty()) {
 
+
+
             final EventView headEv =
                     new EventView(this, model.getEvents().get(0));
             RelativeLayout.LayoutParams lp =
@@ -88,7 +92,7 @@ public class DayActivity extends Activity {
 
             rl.addView(headEv, lp);
             for (int i = 1; i < model.getEvents().size(); i++) {
-                // Log.d("DayActivity", "event="+e);
+                // Log.d("Tracker-Test", "event="+e);
 
                 EventView ev =
                         new EventView(this, model.getEvents().get(i));
@@ -97,10 +101,9 @@ public class DayActivity extends Activity {
                 lp2.setMargins(ev.leftMargin(), ev.eventPos(), 0, 0);
                 rl.addView(ev, lp2);
             }
-            // Log.d("DayActivity", "Scroll Y=" + headEv.eventPos());
+            // Log.d("Scroll", "Scroll Y=" + headEv.eventPos());
             // Scroll to the first Event.
             sv.post(new Runnable() {
-                @Override
                 public void run() {
                     sv.smoothScrollTo(0,
                             headEv.eventPos() - headEv.leftMargin());
