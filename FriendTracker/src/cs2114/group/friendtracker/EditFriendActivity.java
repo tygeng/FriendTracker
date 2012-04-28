@@ -50,22 +50,22 @@ public class EditFriendActivity extends ListActivity {
         listView = (ListView) findViewById(R.id.eventList);
 
         src = new DataSource(this);
-        src.open();
 
         adapter = new ArrayAdapter<Event>(this, R.layout.mylist);
+
         Intent i = getIntent();
         // Receiving the Data
         // edit = false;
 
         edit = (i.getStringExtra("id") != null);
         if (edit) {
+
             Integer ownerId = Integer.parseInt(i.getStringExtra("id"));
+
+            src.open();
             person = src.getPerson(ownerId);
 
-            adapter =
-                    new ArrayAdapter<Event>(this, R.layout.mylist,
-                            src.getEventsForPerson(person.getId()));
-
+            src.close();
             editTextName.setText(person.getName());
             editTextPhoneNumber.setText(person.getPhoneNumber() + "");
 
@@ -73,10 +73,8 @@ public class EditFriendActivity extends ListActivity {
             listView.setAdapter(adapter);
 
         }
-
-        listView.setAdapter(adapter);
         registerForContextMenu(listView);
-        src.close();
+
     }
 
     @Override
@@ -134,14 +132,21 @@ public class EditFriendActivity extends ListActivity {
     public void onClickDone(View v) {
         src.open();
         if (edit) {
+            int phone = 0;
+            if (!editTextPhoneNumber.getText().toString().isEmpty()) {
+                phone =
+                        Integer.parseInt(editTextPhoneNumber.getText()
+                                .toString().replaceAll("\\D", ""));
+            }
             person =
                     new Person(person.getId(), editTextName.getText()
-                            .toString(),
-                            Integer.parseInt(editTextPhoneNumber
-                                    .getText().toString()
-                                    .replaceAll(" ", "")));
+                            .toString(), phone);
             src.updatePerson(person);
         }
+        else {
+            createPerson();
+        }
+
         src.close();
         finish();
 
@@ -181,7 +186,9 @@ public class EditFriendActivity extends ListActivity {
     public void onClickAddMoreEvents(View v) {
 
         if (person == null) {
+            edit = true;
             createPerson();
+
         }
 
         Intent viewScreen =
@@ -198,12 +205,13 @@ public class EditFriendActivity extends ListActivity {
      */
     public void onResume() {
         super.onResume();
-        if (person != null) {
-            adapter.clear();
+        if (edit) {
             src.open();
-            adapter.addAll(src.getEventsForPerson(person.getId()));
+            adapter =
+                    new ArrayAdapter<Event>(this, R.layout.mylist,
+                            src.getEventsForPerson(person.getId()));
             src.close();
-            listView.postInvalidate();
+            listView.setAdapter(adapter);
         }
     }
 

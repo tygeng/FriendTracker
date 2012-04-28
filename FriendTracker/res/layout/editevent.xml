@@ -1,122 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-     >
+    android:layout_height="match_parent" >
 
     <TextView
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
         android:text="Edit Event: "
         android:textAppearance="?android:attr/textAppearanceMedium" />
-        android:id="@+id/tableLayout2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal" 
-        android:layout_marginTop="30dip">
-
-        <TextView
-            android:id="@+id/textViewEventName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Name: " />
-
-        <EditText
-            android:id="@+id/editTextEventName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
-
-    <TableLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" 
-        android:layout_marginTop="80dip">
-
-        <TableRow
-            android:id="@+id/tableRow4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
-
-            <TextView
-                android:id="@+id/textViewStartTime"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="start time: " />
-
-            <EditText
-                android:id="@+id/editTextStartTime"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="time" />
-        </TableRow>
-
-        <TableRow
-            android:id="@+id/tableRow5"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
-
-            <TextView
-                android:id="@+id/textViewEndTime"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="end time: " />
-
-            <EditText
-                android:id="@+id/editTextEndTime"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="time" />
-        </TableRow>
-
-        <TableRow
-            android:id="@+id/tableRow6"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
-
-            <TextView
-                android:id="@+id/textViewStartDate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="start date: " />
-
-            <EditText
-                android:id="@+id/editTextStartDate"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="date" />
-        </TableRow>
-
-        <TableRow
-            android:id="@+id/tableRow7"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
-
-            <TextView
-                android:id="@+id/textViewEndDate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="end date: " />
-
-            <EditText
-                android:id="@+id/editTextEndDate"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="date" />
-        </TableRow>
-    </TableLayout>
 
     <LinearLayout
         android:id="@+id/mwf"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        
-        android:layout_marginTop="250dip" >
+        android:layout_below="@+id/endDateLayout"
+        android:layout_marginTop="20dip"
+        android:orientation="horizontal" >
 
         <CheckBox
             android:id="@+id/checkBoxM"
@@ -141,11 +43,11 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal" 
-        
-        android:layout_marginTop="280dip" >
+        android:layout_below="@+id/mwf"
+        android:orientation="horizontal" >
 
         <CheckBox
             android:id="@+id/checkBoxSun"
@@ -176,13 +78,139 @@
             android:text="Sat" />
     </LinearLayout>
 
-    <Button
-        android:id="@+id/button1"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:onClick="doneButton"
-        android:text="Done" />
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/deleteButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="deleteButton"
+            android:text="Delete" />
+
+        <Button
+            android:id="@+id/button1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.2"
+            android:onClick="doneButton"
+            android:text="Done" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/startTimeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/nameLayout"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/textViewStartTime"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:text="start time: " />
+
+        <EditText
+            android:id="@+id/editTextStartTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="time" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/endTimeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/startTimeLayout"
+        android:layout_marginLeft="10dp"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/textViewEndTime"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:text="end time: " />
+
+        <EditText
+            android:id="@+id/editTextEndTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="time" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/startDateLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/endTimeLayout"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/textViewStartDate"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:text="start date: " />
+
+        <EditText
+            android:id="@+id/editTextStartDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="date" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/endDateLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/startDateLayout"
+        android:layout_marginLeft="10dp"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/textViewEndDate"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:text="end date: " />
+
+        <EditText
+            android:id="@+id/editTextEndDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="date" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/nameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/textView1"
+        android:layout_marginLeft="10dp"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/textViewEventName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Name: " />
+
+        <EditText
+            android:id="@+id/editTextEventName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
 
 </RelativeLayout>

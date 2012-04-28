@@ -40,15 +40,9 @@ public class FriendTrackerActivity extends ListActivity {
         list = (ListView) findViewById(android.R.id.list);
 
         src = new DataSource(this);
-        src.open();
 
-        adapter =
-                new ArrayAdapter<Person>(this,
-                        android.R.layout.simple_list_item_1,
-                        src.getAllPersons());
-        src.close();
-        list.setAdapter(adapter);
         addFriend = (Button) findViewById(R.id.addFriend);
+
         registerForContextMenu(list);
         addFriend.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
@@ -66,7 +60,8 @@ public class FriendTrackerActivity extends ListActivity {
                         new Intent(getApplicationContext(),
                                 DayActivity.class);
 
-                viewDay.putExtra("id", ((Person) (parent.getItemAtPosition(position))).getId());
+                viewDay.putExtra("id", ((Person) (parent
+                        .getItemAtPosition(position))).getId());
                 startActivity(viewDay);
 
             }
@@ -79,11 +74,15 @@ public class FriendTrackerActivity extends ListActivity {
      */
     public void onResume() {
         super.onResume();
-        adapter.clear();
         src.open();
-        adapter.addAll(src.getAllPersons());
+
+        adapter =
+                new ArrayAdapter<Person>(this,
+                        android.R.layout.simple_list_item_1,
+                        src.getAllPersons());
         src.close();
         list.setAdapter(adapter);
+        list.postInvalidate();
 
     }
 

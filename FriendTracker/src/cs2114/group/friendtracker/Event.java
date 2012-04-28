@@ -222,7 +222,17 @@ public class Event {
      * @return The formated time
      */
     private String formatTime(String time) {
-        int hour = Integer.parseInt(time.substring(0, 2));
+        int hour = 0;
+        try {
+            hour = Integer.parseInt(time.substring(0, 2));
+        }
+        catch (StringIndexOutOfBoundsException e) {
+            return "null";
+        }
+        catch (NumberFormatException e) {
+            return "null";
+        }
+
         String aux = " AM";
         if (hour == 24) {
             hour = 0;

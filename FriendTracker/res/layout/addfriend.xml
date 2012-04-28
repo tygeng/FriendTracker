@@ -15,6 +15,7 @@
         android:id="@+id/nameLinear"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
         android:orientation="horizontal" >
 
         <TextView
@@ -28,8 +29,6 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:inputType="textPersonName" >
-
-            <requestFocus android:layout_width="wrap_content" />
         </EditText>
     </LinearLayout>
 
@@ -37,6 +36,7 @@
         android:id="@+id/phonelinear"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
         android:orientation="horizontal" >
 
         <TextView
@@ -51,13 +51,6 @@
             android:layout_height="wrap_content"
             android:inputType="phone" />
     </LinearLayout>
-
-    <TextView
-        android:id="@+id/textViewFriendScheduleTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Friend&apos;s Schedule: "
-        android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <TableLayout
         android:id="@+id/tableLayout4"
@@ -82,24 +75,6 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content" >
 
-        <TableRow>
-
-            <Button
-                android:id="@+id/addEventButton"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:onClick="onClickAddMoreEvents"
-                android:text="Add Event" />
-
-            <Button
-                android:id="@+id/doneButton"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right"
-                android:onClick="onClickDone"
-                android:text="Done" />
-        </TableRow>
-
         <TableRow
             android:id="@+id/tableRow10"
             android:layout_width="wrap_content"
@@ -109,8 +84,9 @@
                 android:id="@+id/textViewEventTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:text="Events"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
+                android:textAppearance="?android:attr/textAppearanceLarge" />
         </TableRow>
 
         <TableRow
@@ -123,13 +99,41 @@
     <ListView
         android:id="@+id/eventList"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_weight="1" >
     </ListView>
 
     <ListView
         android:id="@android:id/list"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        
         android:text="@string/hello" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:gravity="bottom"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/addEventButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="onClickAddMoreEvents"
+            android:text="Add Event" />
+
+        <Button
+            android:id="@+id/doneButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_weight="1"
+            android:onClick="onClickDone"
+            android:text="Done" />
+    </LinearLayout>
 
 </LinearLayout>
