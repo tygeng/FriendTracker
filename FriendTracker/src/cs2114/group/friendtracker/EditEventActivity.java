@@ -114,31 +114,31 @@ public class EditEventActivity
         {
             days[i] = '*';
         }
-        if (checkBoxM.isChecked())
+        if (checkBoxSun.isChecked())
         {
             days[0] = '1';
         }
-        if (checkBoxT.isChecked())
+        if (checkBoxM.isChecked())
         {
             days[1] = '1';
         }
-        if (checkBoxW.isChecked())
+        if (checkBoxT.isChecked())
         {
             days[2] = '1';
         }
-        if (checkBoxTh.isChecked())
+        if (checkBoxW.isChecked())
         {
             days[3] = '1';
         }
-        if (checkBoxF.isChecked())
+        if (checkBoxTh.isChecked())
         {
             days[4] = '1';
         }
-        if (checkBoxSat.isChecked())
+        if (checkBoxF.isChecked())
         {
             days[5] = '1';
         }
-        if (checkBoxSun.isChecked())
+        if (checkBoxSat.isChecked())
         {
             days[6] = '1';
         }
@@ -190,33 +190,33 @@ public class EditEventActivity
 
         char[] days = eventToEdit.getDays();
 
-        if (days[0] == '1')
+        if (days[0] != '*')
         {
-            checkBoxM.setActivated(true);
+            checkBoxSun.setChecked(true);
         }
-        if (days[1] == '1')
+        if (days[1] != '*')
         {
-            checkBoxT.setActivated(true);
+            checkBoxM.setChecked(true);
         }
-        if (days[2] == '1')
+        if (days[2] != '*')
         {
-            checkBoxW.setActivated(true);
+            checkBoxT.setChecked(true);
         }
-        if (days[3] == '1')
+        if (days[3] != '*')
         {
-            checkBoxTh.setActivated(true);
+            checkBoxW.setChecked(true);
         }
-        if (days[4] == '1')
+        if (days[4] != '*')
         {
-            checkBoxF.setActivated(true);
+            checkBoxTh.setChecked(true);
         }
-        if (days[5] == '1')
+        if (days[5] != '*')
         {
-            checkBoxSat.setActivated(true);
+            checkBoxF.setChecked(true);
         }
-        if (days[6] == '1')
+        if (days[6] != '*')
         {
-            checkBoxSun.setActivated(true);
+            checkBoxSat.setChecked(true);
         }
     }
 }

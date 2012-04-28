@@ -1,6 +1,6 @@
 package cs2114.group.friendtracker;
 
-
+import android.content.Intent;
 
 import android.view.View;
 
@@ -47,11 +47,11 @@ public class DayActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-//         DatabaseFiller filler = new DatabaseFiller(this);
-//         filler.fill();
-//         long ownerId = filler.getPersonId(1);
+        // DatabaseFiller filler = new DatabaseFiller(this);
+        // filler.fill();
+        // long ownerId = filler.getPersonId(1);
 
-        long ownerId = getIntent().getLongExtra("ownerId", 1);
+        long ownerId = getIntent().getLongExtra("id", 1);
         model = new DayModel(this, ownerId);
 
         // initialize the GUI
@@ -82,10 +82,9 @@ public class DayActivity extends Activity {
         dateText.setText(model.getDate());
         if (model.getEvents() != null && !model.getEvents().isEmpty()) {
 
-
-
             final EventView headEv =
                     new EventView(this, model.getEvents().get(0));
+
             RelativeLayout.LayoutParams lp =
                     new RelativeLayout.LayoutParams(100000, 0);
             lp.setMargins(headEv.leftMargin(), headEv.eventPos(), 0, 0);
@@ -96,6 +95,7 @@ public class DayActivity extends Activity {
 
                 EventView ev =
                         new EventView(this, model.getEvents().get(i));
+
                 RelativeLayout.LayoutParams lp2 =
                         new RelativeLayout.LayoutParams(100000, 0);
                 lp2.setMargins(ev.leftMargin(), ev.eventPos(), 0, 0);
@@ -116,12 +116,13 @@ public class DayActivity extends Activity {
 
     /**
      * Standard onResume
-     *
-     * @param savedBundle
      */
     public void onResume() {
         super.onResume();
-        fillContents();
+        if (model != null) {
+            model.updateEvents();
+            fillContents();
+        }
     }
 
     /**
@@ -131,7 +132,13 @@ public class DayActivity extends Activity {
      *            the Button
      */
     public void addButtonClicked(View addButton) {
-        // do something
+
+        Intent addEvent =
+                new Intent(getApplicationContext(),
+                        EditEventActivity.class);
+        addEvent.putExtra("personId", model.getOwnerId() + "");
+
+        startActivity(addEvent);
     }
 
     /**
@@ -166,4 +173,31 @@ public class DayActivity extends Activity {
         model.today();
         fillContents();
     }
+
+    // public class EventTouchListener implements EventView.OnTouchListener {
+    //
+    // /**
+    // * @param v
+    // * @param event
+    // * @return
+    // */
+    // @Override
+    // public boolean onTouch(View v, MotionEvent event) {
+    // Log.d("DayActivity","inside ontouchListener");
+    // if (event.getAction() == MotionEvent.ACTION_UP) {
+    // Intent editEvent =
+    // new Intent(getApplicationContext(),
+    // EditEventActivity.class);
+    // editEvent.putExtra("id", ((EventView) v).getEvent()
+    // .getId() + "");
+    // editEvent.putExtra("personId", ((EventView) v).getEvent()
+    // .getOwner() + "");
+    // startActivity(editEvent);
+    //
+    // return true;
+    // }
+    // return false;
+    // }
+    //
+    // }
 }

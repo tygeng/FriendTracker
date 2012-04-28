@@ -24,118 +24,86 @@ import android.view.View.OnClickListener;
  * @author Bean
  * @version Apr 27, 2012
  */
-public class FriendTrackerActivity
-    extends ListActivity
-{
-    private DataSource           src;
-    private FriendTrackerModel   model;
-    private Person               self;
+public class FriendTrackerActivity extends ListActivity {
+    private DataSource src;
 
     private ArrayAdapter<Person> adapter;
-    private ListView             list;
-    private Button               addFriend;
-
+    private ListView list;
+    private Button addFriend;
 
     /** Called when the activity is first created. */
     @Override
-    public void onCreate(Bundle savedInstanceState)
-    {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
 
-        list = (ListView)findViewById(android.R.id.list);
+        list = (ListView) findViewById(android.R.id.list);
 
         src = new DataSource(this);
         src.open();
 
-        // SELF IS EMPTY FOR NOW
-        self = new Person(0, "", 0);
-
-
         adapter =
-            new ArrayAdapter<Person>(
-                this,
-                android.R.layout.simple_list_item_1,
-                src.getAllPersons());
-
+                new ArrayAdapter<Person>(this,
+                        android.R.layout.simple_list_item_1,
+                        src.getAllPersons());
+        src.close();
         list.setAdapter(adapter);
-        addFriend = (Button)findViewById(R.id.addFriend);
-
+        addFriend = (Button) findViewById(R.id.addFriend);
         registerForContextMenu(list);
-
         addFriend.setOnClickListener(new OnClickListener() {
-            public void onClick(View v)
-            {
-                onPause();
-
+            public void onClick(View v) {
                 Intent viewScreen =
-                    new Intent(
-                        getApplicationContext(),
-                        EditFriendActivity.class);
-
+                        new Intent(getApplicationContext(),
+                                EditFriendActivity.class);
                 startActivity(viewScreen);
+            }
+        });
 
-                onResume();
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parent, View view,
+                    int position, long id) {
+                Intent viewDay =
+                        new Intent(getApplicationContext(),
+                                DayActivity.class);
+
+                viewDay.putExtra("id", ((Person) (parent.getItemAtPosition(position))).getId());
+                startActivity(viewDay);
 
             }
         });
-        src.close();
 
     }
-
-
-    /**
-     * pauses the database
-     */
-    public void onPause()
-    {
-        super.onPause();
-
-    }
-
 
     /**
      * resumes the database
      */
-    public void onResume()
-    {
+    public void onResume() {
         super.onResume();
+        adapter.clear();
         src.open();
-        model = new FriendTrackerModel(src.getAllPersons(), self);
-
-        adapter =
-            new ArrayAdapter<Person>(
-                this,
-                android.R.layout.simple_list_item_1,
-                model.getContacts());
-
-        list.setAdapter(adapter);
+        adapter.addAll(src.getAllPersons());
         src.close();
-    }
+        list.setAdapter(adapter);
 
+    }
 
     /**
      * creates the long click menu. the menu entries can be found under values
      * in strings.xml
      */
     @Override
-    public void onCreateContextMenu(
-        ContextMenu menu,
-        View v,
-        ContextMenuInfo menuInfo)
-    {
+    public void onCreateContextMenu(ContextMenu menu, View v,
+            ContextMenuInfo menuInfo) {
 
-        if (v.getId() == android.R.id.list)
-        {
-            String[] menuItems = getResources().getStringArray(R.array.menu);
-            for (int i = 0; i < menuItems.length; i++)
-            {
+        if (v.getId() == android.R.id.list) {
+            String[] menuItems =
+                    getResources().getStringArray(R.array.menu);
+            for (int i = 0; i < menuItems.length; i++) {
                 menu.add(Menu.NONE, i, i, menuItems[i]);
 
             }
         }
     }
-
 
     /**
      * sets actions for when the menu options are pressed. if the menu option 0
@@ -145,32 +113,23 @@ public class FriendTrackerActivity
      * the user pressed "view" so this will take the user to ViewFriendActivity
      */
     @Override
-    public boolean onContextItemSelected(MenuItem item)
-    {
+    public boolean onContextItemSelected(MenuItem item) {
         AdapterView.AdapterContextMenuInfo info =
-            (AdapterView.AdapterContextMenuInfo)item.getMenuInfo();
+                (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
         Person selectedPerson1 = adapter.getItem(info.position);
         // to edit
-        if (item.getItemId() == 0)
-        {
-            onPause();
-
+        if (item.getItemId() == 0) {
             Intent viewScreen =
-                new Intent(getApplicationContext(), EditFriendActivity.class);
+                    new Intent(getApplicationContext(),
+                            EditFriendActivity.class);
 
             viewScreen.putExtra("id", selectedPerson1.getId() + "");
-
             startActivity(viewScreen);
-
-            onResume();
-
             return true;
-
         }
 
         // to delete
-        if (item.getItemId() == 1)
-        {
+        if (item.getItemId() == 1) {
             src.open();
             adapter.remove(selectedPerson1);
             src.deletePerson(selectedPerson1);
@@ -179,19 +138,13 @@ public class FriendTrackerActivity
         }
 
         // to view
-        if (item.getItemId() == 2)
-        {
-
-            onPause();
+        if (item.getItemId() == 2) {
 
             Intent viewScreen =
-                new Intent(getApplicationContext(), ViewFriendActivity.class);
-
+                    new Intent(getApplicationContext(),
+                            ViewFriendActivity.class);
             viewScreen.putExtra("id", selectedPerson1.getId() + "");
-
             startActivity(viewScreen);
-
-            onResume();
 
             return true;
         }

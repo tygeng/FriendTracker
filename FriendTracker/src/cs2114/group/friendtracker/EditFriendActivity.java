@@ -47,19 +47,17 @@ public class EditFriendActivity extends ListActivity {
         editTextPhoneNumber =
                 (EditText) findViewById(R.id.editTextPhoneNumber);
 
-        listView = (ListView) findViewById(R.id.listView1);
+        listView = (ListView) findViewById(R.id.eventList);
 
         src = new DataSource(this);
         src.open();
 
         adapter = new ArrayAdapter<Event>(this, R.layout.mylist);
-
         Intent i = getIntent();
         // Receiving the Data
         // edit = false;
 
-        edit = !(i.getStringExtra("id") == null);
-
+        edit = (i.getStringExtra("id") != null);
         if (edit) {
             Integer ownerId = Integer.parseInt(i.getStringExtra("id"));
             person = src.getPerson(ownerId);
@@ -77,17 +75,15 @@ public class EditFriendActivity extends ListActivity {
         }
 
         listView.setAdapter(adapter);
-
         registerForContextMenu(listView);
-
         src.close();
     }
 
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v,
             ContextMenuInfo menuInfo) {
-        menu.add(Menu.NONE, 1, 1, "Edit");
-        menu.add(Menu.NONE, 0, 0, "Delete");
+        menu.add(Menu.NONE, 1, 1, "Delete");
+        menu.add(Menu.NONE, 0, 0, "Edit");
 
     }
 
@@ -96,7 +92,7 @@ public class EditFriendActivity extends ListActivity {
                 (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
         Event selectedEvent = adapter.getItem(info.position);
         // to delete
-        if (item.getItemId() == 0) {
+        if (item.getItemId() == 1) {
             adapter.remove(selectedEvent);
             src.open();
             src.deleteEvent(selectedEvent);
@@ -105,15 +101,13 @@ public class EditFriendActivity extends ListActivity {
         }
 
         // to edit
-        if (item.getItemId() == 1) {
+        if (item.getItemId() == 0) {
 
             Intent viewScreen =
                     new Intent(getApplicationContext(),
                             EditEventActivity.class);
-
             viewScreen.putExtra("id", selectedEvent.getId() + "");
             viewScreen.putExtra("personId", person.getId() + "");
-
             startActivity(viewScreen);
             src.open();
             adapter =
@@ -200,23 +194,17 @@ public class EditFriendActivity extends ListActivity {
     }
 
     /**
-     * for pausing the database
-     */
-    public void onPause() {
-        super.onPause();
-
-    }
-
-    /**
      * for resuming the database
      */
     public void onResume() {
         super.onResume();
-        adapter.clear();
-        src.open();
-        adapter.addAll(src.getEventsForPerson(person.getId()));
-        src.close();
-        listView.postInvalidate();
+        if (person != null) {
+            adapter.clear();
+            src.open();
+            adapter.addAll(src.getEventsForPerson(person.getId()));
+            src.close();
+            listView.postInvalidate();
+        }
     }
 
     // ----------------------------------------------------------

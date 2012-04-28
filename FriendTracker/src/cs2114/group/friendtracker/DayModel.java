@@ -10,20 +10,19 @@ import static java.util.GregorianCalendar.*;
 /**
  * This class serves to model a day schedule.
  *
- * @author  Chris Schweinhart (schwein)
- * @author  Tianyu Geng (tony1)
- * @author  Elena Nadolinski (elena)
+ * @author Chris Schweinhart (schwein)
+ * @author Tianyu Geng (tony1)
+ * @author Elena Nadolinski (elena)
  * @version 2012.04.27
  */
-public class DayModel
-{
+public class DayModel {
     // Instance fields
     private Person owner;
     private GregorianCalendar gc;
     private List<Event> events;
     private DataSource src;
-    private static final String[] DAYS = {null,"Sun","Mon","Tue",
-            "Wed","Thu","Fri","Sat"};
+    private static final String[] DAYS = { null, "Sun", "Mon", "Tue",
+            "Wed", "Thu", "Fri", "Sat" };
 
     // /**
     // * The constructor for DayModel.
@@ -72,7 +71,7 @@ public class DayModel
         src = new DataSource(c);
         src.open();
         this.owner = src.getPerson(ownerId);
-        Log.d("DayModel","Person="+this.owner);
+        Log.d("DayModel", "Person=" + this.owner);
         src.close();
         updateEvents();
 
@@ -89,7 +88,7 @@ public class DayModel
         events =
                 src.getEventsForDay(owner.getId(), getDateForQuery(),
                         gc.get(DAY_OF_WEEK));
-        Log.d("DayModel","events.size="+events.size());
+        Log.d("DayModel", "events.size=" + events.size());
         src.close();
     }
 
@@ -103,6 +102,18 @@ public class DayModel
             return null;
         }
         return owner.getName();
+    }
+
+    /**
+     * Get the owner's Id.
+     *
+     * @return the id
+     */
+    public long getOwnerId() {
+        if (owner == null) {
+            return 0;
+        }
+        return owner.getId();
     }
 
     /**

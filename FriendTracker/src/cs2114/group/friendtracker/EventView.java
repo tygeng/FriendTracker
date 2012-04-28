@@ -3,9 +3,13 @@
  */
 package cs2114.group.friendtracker;
 
+import android.app.Activity;
+
+import android.content.Intent;
+
 import java.util.Random;
 import android.graphics.Color;
-import android.content.Context;
+
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Paint.Style;
@@ -27,6 +31,7 @@ public class EventView extends View {
     private Paint titleText;
     private Paint timeText;
     private DisplayMetrics dm;
+    private Activity context;
 
     /**
      * Constructor for EventView
@@ -36,8 +41,9 @@ public class EventView extends View {
      * @param e
      *            the event this EventView is associated with
      */
-    public EventView(Context c, Event e) {
+    public EventView(Activity c, Event e) {
         super(c);
+        context = c;
         this.e = e;
         if (e == null) {
             throw new IllegalStateException(
@@ -136,7 +142,13 @@ public class EventView extends View {
      */
     public boolean onTouchEvent(MotionEvent motionEvent) {
         if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
-            // do something here.
+            Intent editEvent =
+                    new Intent(context.getApplicationContext(),
+                            EditEventActivity.class);
+            editEvent.putExtra("id", e.getId() + "");
+            editEvent.putExtra("personId", e.getOwner() + "");
+            context.startActivity(editEvent);
+
             return false;
         }
         return true;
