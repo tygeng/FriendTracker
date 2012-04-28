@@ -14,7 +14,9 @@ import android.app.Activity;
 /**
  * This activity edits the selected event
  *
- * @author Elena Nadolinski
+ * @author Elena Nadolinski (elena)
+ * @author Chris Schweinhart (schwein)
+ * @author Tianyu Geng (tony1)
  * @version Apr 27, 2012
  */
 public class EditEventActivity extends Activity {

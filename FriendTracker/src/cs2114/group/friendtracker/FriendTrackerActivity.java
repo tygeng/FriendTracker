@@ -21,7 +21,9 @@ import android.view.View.OnClickListener;
  * friend gives options of editing, viewing, and deleting a friend. Clicking on
  * the add button allows the user to add a new friend
  *
- * @author Bean
+ * @author Lena Nadolinski (elena)
+ * @author Tianyu Geng (tony1)
+ * @author Chris Schweinhart (schwein)
  * @version Apr 27, 2012
  */
 public class FriendTrackerActivity extends ListActivity {

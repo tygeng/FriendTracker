@@ -215,8 +215,8 @@ public class DataSource {
      */
     public void deletePerson(Person p) {
         long id = p.getId();
-        System.out.println("Person deleted with id: " + id);
         database.delete(H.TABLE_PERSONS, H.P_ID + " = " + id, null);
+        database.delete(H.TABLE_EVENTS, H.E_OWNER + " = " + id, null);
     }
 
     /**

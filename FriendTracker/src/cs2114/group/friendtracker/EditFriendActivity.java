@@ -24,7 +24,9 @@ import android.os.Bundle;
  * modifying events or adding new ones, or changing name/phone number) or adding
  * a new friend
  *
- * @author Elena Nadolinski
+ * @author Elena Nadolinski (elena)
+ * @author Chris Schweinhart (schwein)
+ * @author Tianyu Geng (tony1)
  * @version Apr 27, 2012
  */
 public class EditFriendActivity extends ListActivity {

@@ -13,7 +13,9 @@ import android.app.Activity;
 /**
  * this is the view friend activity that will display all the user's information
  *
- * @author Elena Nadolinski
+ * @author Elena Nadolinski (elena)
+ * @author Chris Schweinhart (schwein)
+ * @author Tianyu Geng (tony1)
  * @version Apr 27, 2012
  */
 public class ViewFriendActivity
