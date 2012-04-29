@@ -40,7 +40,7 @@ public class EditEventActivity extends Activity {
 
     private boolean edit;
 
-    private Integer ownerId;
+    private long ownerId;
     private Button deleteButton;
 
     /**
@@ -74,12 +74,12 @@ public class EditEventActivity extends Activity {
 
         Intent i = getIntent();
 
-        ownerId = Integer.parseInt(i.getStringExtra("personId"));
+        ownerId = i.getLongExtra("personId",0);
 
-        edit = !(i.getStringExtra("id") == null);
+        edit = (i.getLongExtra("id",0) != 0);
 
         if (edit) {
-            Integer eventId = Integer.parseInt(i.getStringExtra("id"));
+            long eventId = i.getLongExtra("id",0);
             eventToEdit = src.getEvent(eventId);
 
             fillInfo();

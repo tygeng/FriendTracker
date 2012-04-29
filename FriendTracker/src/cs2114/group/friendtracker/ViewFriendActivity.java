@@ -47,7 +47,7 @@ public class ViewFriendActivity
 
         Intent i = getIntent();
         // Receiving the Data
-        Integer ownerId = Integer.parseInt(i.getStringExtra("id"));
+        long ownerId = i.getLongExtra("id",0);
 
         Person selectedPerson = src.getPerson(ownerId);
 

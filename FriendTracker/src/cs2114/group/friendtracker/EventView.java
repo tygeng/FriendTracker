@@ -145,8 +145,8 @@ public class EventView extends View {
             Intent editEvent =
                     new Intent(context.getApplicationContext(),
                             EditEventActivity.class);
-            editEvent.putExtra("id", e.getId() + "");
-            editEvent.putExtra("personId", e.getOwner() + "");
+            editEvent.putExtra("id", e.getId() );
+            editEvent.putExtra("personId", e.getOwner());
             context.startActivity(editEvent);
 
             return false;

@@ -59,10 +59,10 @@ public class EditFriendActivity extends ListActivity {
         // Receiving the Data
         // edit = false;
 
-        edit = (i.getStringExtra("id") != null);
+        edit = (i.getLongExtra("id",0) != 0);
         if (edit) {
 
-            Integer ownerId = Integer.parseInt(i.getStringExtra("id"));
+            long ownerId = i.getLongExtra("id",0);
 
             src.open();
             person = src.getPerson(ownerId);
@@ -106,8 +106,8 @@ public class EditFriendActivity extends ListActivity {
             Intent viewScreen =
                     new Intent(getApplicationContext(),
                             EditEventActivity.class);
-            viewScreen.putExtra("id", selectedEvent.getId() + "");
-            viewScreen.putExtra("personId", person.getId() + "");
+            viewScreen.putExtra("id", selectedEvent.getId());
+            viewScreen.putExtra("personId", person.getId());
             startActivity(viewScreen);
             src.open();
             adapter =
@@ -196,7 +196,7 @@ public class EditFriendActivity extends ListActivity {
         Intent viewScreen =
                 new Intent(getApplicationContext(),
                         EditEventActivity.class);
-        viewScreen.putExtra("personId", person.getId() + "");
+        viewScreen.putExtra("personId", person.getId());
 
         startActivity(viewScreen);
 

@@ -52,7 +52,7 @@ public class DayActivity extends Activity {
         // long ownerId = filler.getPersonId(1);
 
         long ownerId = getIntent().getLongExtra("id", 1);
-        model = new DayModel(this, ownerId);
+        model = new DayModel(this.getApplicationContext(), ownerId);
 
         // initialize the GUI
         this.setContentView(R.layout.dayview);

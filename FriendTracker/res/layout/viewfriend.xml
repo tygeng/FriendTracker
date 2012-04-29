@@ -9,6 +9,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text=""
+        android:layout_weight="0"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <TextView
@@ -17,6 +18,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="20px"
         android:text=""
+        android:layout_weight="0"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
@@ -24,12 +26,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Events:"
+        android:layout_weight="0"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <ListView
         android:id="@+id/listViewEvents"
         android:layout_width="match_parent"
-        android:layout_height="316dp" >
+        android:layout_height="wrap_content"
+        android:layout_weight="1" >
     </ListView>
 
     <LinearLayout
@@ -38,9 +42,10 @@
         android:layout_height="wrap_content" >
 
         <Button
-            android:id="@+id/button1"
-            android:layout_width="wrap_content"
+            android:id="@+id/viewDoneButton"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="0"
             android:onClick="onClickDone"
             android:text="Done" />
 

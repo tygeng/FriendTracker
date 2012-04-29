@@ -47,11 +47,11 @@ public class H extends SQLiteOpenHelper {
 
     // public static final String
 
-    private static final String DATABASE_NAME = "friendtracker.db";
-    private static final int DATABASE_VERSION = 3;
+    public static final String DATABASE_NAME = "friendtracker.db";
+    public static final int DATABASE_VERSION = 4;
 
     // Database creation sql statement
-    private static final String CREATE_EVENT_TABLE = "create table "
+    public static final String CREATE_EVENT_TABLE = "create table "
             + TABLE_EVENTS + "( " + E_ID
             + " integer primary key autoincrement, " + E_NAME
             + " text not null, " + E_OWNER + " integer not null, "
@@ -62,7 +62,7 @@ public class H extends SQLiteOpenHelper {
             + E_DAYS[5] + " integer, " + E_DAYS[6] + " integer, "
             + E_DAYS[7] + " integer" + ");";
 
-    private static final String CREATE_PERSON_TABLE = "create table "
+    public static final String CREATE_PERSON_TABLE = "create table "
             + TABLE_PERSONS + "( " + P_ID
             + " integer primary key autoincrement, " + P_NAME
             + " text not null, " + P_PHONE + " integer" + ");";

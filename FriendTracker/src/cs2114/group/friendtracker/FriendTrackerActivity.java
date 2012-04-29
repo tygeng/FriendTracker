@@ -124,7 +124,7 @@ public class FriendTrackerActivity extends ListActivity {
                     new Intent(getApplicationContext(),
                             EditFriendActivity.class);
 
-            viewScreen.putExtra("id", selectedPerson1.getId() + "");
+            viewScreen.putExtra("id", selectedPerson1.getId());
             startActivity(viewScreen);
             return true;
         }
@@ -144,7 +144,7 @@ public class FriendTrackerActivity extends ListActivity {
             Intent viewScreen =
                     new Intent(getApplicationContext(),
                             ViewFriendActivity.class);
-            viewScreen.putExtra("id", selectedPerson1.getId() + "");
+            viewScreen.putExtra("id", selectedPerson1.getId());
             startActivity(viewScreen);
 
             return true;

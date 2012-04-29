@@ -60,8 +60,10 @@ public class DataSource {
      * Clear all events and persons stored in the database.
      */
     public void clearAll() {
-        database.delete(H.TABLE_EVENTS, null, null);
-        database.delete(H.TABLE_PERSONS, null, null);
+        database.execSQL("DROP TABLE IF EXISTS " + H.TABLE_EVENTS);
+        database.execSQL("DROP TABLE IF EXISTS " + H.TABLE_PERSONS);
+        database.execSQL(H.CREATE_EVENT_TABLE);
+        database.execSQL(H.CREATE_PERSON_TABLE);
     }
 
     /**

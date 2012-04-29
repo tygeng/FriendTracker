@@ -4,6 +4,9 @@
 package cs2114.group.friendtracker.testing;
 
 import static java.util.Calendar.*;
+
+import cs2114.group.friendtracker.Person;
+
 import java.util.GregorianCalendar;
 
 import android.content.Context;
@@ -173,5 +176,22 @@ public class DatabaseFiller {
                         + converter(gc.get(DAY_OF_MONTH));
         gc.add(DATE, -offsetDay);
         return result;
+    }
+
+    /**
+     * Fill the database with a set of static information.
+     * @param src the datasource to use
+     */
+    public static void staticFill(DataSource src) {
+        src.open();
+        src.clearAll();
+
+        Person p1 = src.createPerson("person1", 123456789);
+
+        src.createEvent("event1", p1.getId(), "0800", "1000", "20120101",
+                "20121231", "1111111");
+        src.createEvent("event1", p1.getId(), "1100", "1200", "20120101",
+                "20121231", "1111111");
+        src.close();
     }
 }

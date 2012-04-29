@@ -38,6 +38,7 @@ public class DataSourceTest extends AndroidTestCase {
      */
     public void tearDown() {
         src.close();
+        DatabaseFiller.staticFill(src);
     }
 
     /**
