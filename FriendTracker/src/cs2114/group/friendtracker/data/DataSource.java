@@ -30,7 +30,7 @@ import android.database.sqlite.SQLiteDatabase;
  * @author Tianyu Geng (tony1)
  * @author Chris Schweinhart (schwein)
  * @author Elena Nadolinski (elena)
- * @version Apr 20, 2012
+ * @version 2012.04.29
  */
 public class DataSource {
     /**
@@ -49,8 +49,7 @@ public class DataSource {
     /**
      * The constructor.
      *
-     * @param context
-     *            the context
+     * @param context  The context
      */
     public DataSource(Context context) {
         dbHelper = new H(context);
@@ -76,22 +75,15 @@ public class DataSource {
     /**
      * Create a new Event and store it into the database.
      *
-     * @param name
-     *            name of the event.
-     * @param owner
-     *            the owner Id of this event
-     * @param startTime
-     *            format: hhmm
-     * @param endTime
-     *            format: hhmm
-     * @param startDate
-     *            format: YYYYMMDD
-     * @param endDate
-     *            format: YYYYMMDD
-     * @param days
-     *            : format "**111**" means Tue, Wed, Thur have the event. *
-     *            means no event, any other char means event happens.
-     * @return the new Event that is created.
+     * @param name       Name of the event.
+     * @param owner      The owner Id of this event
+     * @param startTime  Format: hhmm
+     * @param endTime    Format: hhmm
+     * @param startDate  Format: YYYYMMDD
+     * @param endDate    Format: YYYYMMDD
+     * @param days       Format: "**111**" means Tue, Wed, Thur have the event.
+     *                   * means no event, any other char means event happens.
+     * @return           The new Event that is created.
      */
     public Event
             createEvent(String name, long owner, String startTime,
@@ -106,28 +98,20 @@ public class DataSource {
 
         return new Event(eventId, name, owner, startTime, endTime,
                 startDate, endDate, days);
-
     }
 
     /**
      * Create a new Event and store it into the database.
      *
-     * @param name
-     *            name of the event.
-     * @param owner
-     *            the owner Id of this event
-     * @param startTime
-     *            format: hhmm
-     * @param endTime
-     *            format: hhmm
-     * @param startDate
-     *            format: YYYYMMDD
-     * @param endDate
-     *            format: YYYYMMDD
-     * @param days
-     *            : format "**111**" means Tue, Wed, Thur have the event. *
-     *            means no event, any other char means event happens.
-     * @return the new Event that is created.
+     * @param name       Name of the event.
+     * @param owner      The owner Id of this event
+     * @param startTime  Format: hhmm
+     * @param endTime    Format: hhmm
+     * @param startDate  Format: YYYYMMDD
+     * @param endDate    Format: YYYYMMDD
+     * @param days       Format: "**111**" means Tue, Wed, Thur have the event.
+     *                   * means no event, any other char means event happens.
+     * @return           The new Event that is created.
      */
     public Event
             createEvent(String name, long owner, String startTime,
@@ -135,17 +119,14 @@ public class DataSource {
                     String days) {
         return createEvent(name, owner, startTime, endTime, startDate,
                 endDate, days.toCharArray());
-
     }
 
     /**
      * Create a new person and store it to the database.
      *
-     * @param name
-     *            name of the person
-     * @param phoneNumber
-     *            the phone number
-     * @return the person created
+     * @param name         Name of the person
+     * @param phoneNumber  The phone number
+     * @return             The person created
      */
     public Person createPerson(String name, int phoneNumber) {
         ContentValues values = new ContentValues();
@@ -153,15 +134,13 @@ public class DataSource {
         values.put(H.P_PHONE, phoneNumber);
         long personId = database.insert(H.TABLE_PERSONS, null, values);
         return new Person(personId, name, phoneNumber);
-
     }
 
     /**
      * Convert the row the cursor currently points to to an Event.
      *
-     * @param cursor
-     *            the cursor
-     * @return the Event created according to the cursor
+     * @param cursor  The cursor
+     * @return        The Event created according to the cursor
      */
     private Event cursorToEvent(Cursor cursor) {
         char[] days = new char[7];
@@ -183,9 +162,8 @@ public class DataSource {
     /**
      * Convert the row the cursor currently points to to a Person.
      *
-     * @param cursor
-     *            the cursor
-     * @return the Personn created according to the cursor
+     * @param cursor  The cursor
+     * @return        The Personn created according to the cursor
      */
     private Person cursorToPerson(Cursor cursor) {
         if (cursor.getCount() < 1)
@@ -200,8 +178,7 @@ public class DataSource {
     /**
      * Delete an Event in the database.
      *
-     * @param e
-     *            the event to be deleted
+     * @param e  The event to be deleted
      */
     public void deleteEvent(Event e) {
         long id = e.getId();
@@ -212,8 +189,7 @@ public class DataSource {
     /**
      * Delete a Person in the database.
      *
-     * @param p
-     *            the event to be deleted
+     * @param p  The person to be deleted
      */
     public void deletePerson(Person p) {
         long id = p.getId();
@@ -225,12 +201,10 @@ public class DataSource {
      * Convert an event to a ContentValues in order to store it into the
      * database.
      *
-     * @param e
-     *            the event to be converted.
-     * @return the ContentValues obtained by this event.
+     * @param e  The event to be converted.
+     * @return   The ContentValues obtained by this event.
      */
     private ContentValues eventToValues(Event e) {
-
         ContentValues values = new ContentValues();
         values.put(H.E_NAME, e.getName());
         values.put(H.E_OWNER, e.getOwner());
@@ -250,7 +224,7 @@ public class DataSource {
      * Get a full List of Person from the database. This list is sorted
      * alphabetically by name.
      *
-     * @return the List of Persons
+     * @return  The List of Persons
      */
     public List<Person> getAllPersons() {
         List<Person> persons = new ArrayList<Person>();
@@ -270,13 +244,10 @@ public class DataSource {
     /**
      * Get a List of Events of a day by certain criteria.
      *
-     * @param personId
-     *            the owner Id
-     * @param date
-     *            format YYYYMMDD
-     * @param dayOfWeek
-     *            1: Sunday 2: Monday ... 7: Saturday
-     * @return the List of Events
+     * @param personId   The owner Id
+     * @param date       Format: YYYYMMDD
+     * @param dayOfWeek  Format: 1=Sunday, 2=Monday ... 7=Saturday
+     * @return           The List of Events
      */
     public List<Event> getEventsForDay(long personId, String date,
             int dayOfWeek) {
@@ -303,9 +274,8 @@ public class DataSource {
     /**
      * Get the list of all events for a person by a persons id.
      *
-     * @param personId
-     *            the id to identify the person
-     * @return the full list of events
+     * @param personId  The id to identify the person
+     * @return          The full list of events
      */
     public List<Event> getEventsForPerson(long personId) {
         Cursor cursor =
@@ -327,9 +297,8 @@ public class DataSource {
     /**
      * Get an event by the id.
      *
-     * @param id
-     *            the id of the event
-     * @return the event
+     * @param id  The id of the event
+     * @return    The event
      */
     public Event getEvent(long id) {
         Cursor cursor =
@@ -347,9 +316,8 @@ public class DataSource {
     /**
      * Get a person by the id.
      *
-     * @param id
-     *            the id
-     * @return the Person
+     * @param id  The id
+     * @return    The Person
      */
     public Person getPerson(long id) {
         Cursor cursor =
@@ -374,15 +342,11 @@ public class DataSource {
     }
 
     /**
-     * @param p
-     * @return
-     */
-    /**
      * Convert a Person object to a ContentValues object in order to store it
      * into the database.
      *
-     * @param p
-     * @return
+     * @param p  The person to convert
+     * @return   The converted value
      */
     private ContentValues personToValue(Person p) {
         ContentValues values = new ContentValues();
@@ -394,8 +358,7 @@ public class DataSource {
     /**
      * Update an existed event.
      *
-     * @param e
-     *            the event to be updated.
+     * @param e  The event to be updated.
      */
     public void updateEvent(Event e) {
         long eventId = e.getId();
@@ -407,8 +370,7 @@ public class DataSource {
     /**
      * Update an existed person.
      *
-     * @param p
-     *            the person to be updated.
+     * @param p  The person to be updated.
      */
     public void updatePerson(Person p) {
         long personId = p.getId();

@@ -1,6 +1,3 @@
-/**
- *
- */
 package cs2114.group.friendtracker;
 
 import android.app.Activity;
@@ -18,13 +15,15 @@ import android.view.MotionEvent;
 import android.view.View;
 
 /**
+ * Helper view for events on a calendar.  Works with day view.
  *
  * @author Tianyu Geng (tony1)
  * @author Chris Schweinhart (schwein)
  * @author Elena Nadolinski (elena)
- * @version Apr 22, 2012
+ * @version 2012.04.29
  */
 public class EventView extends View {
+    // Instance fields
     private Event e;
     private Paint fill;
     private Paint stroke;
@@ -36,10 +35,8 @@ public class EventView extends View {
     /**
      * Constructor for EventView
      *
-     * @param c
-     *            the context
-     * @param e
-     *            the event this EventView is associated with
+     * @param c  The context
+     * @param e  The event this EventView is associated with
      */
     public EventView(Activity c, Event e) {
         super(c);
@@ -57,7 +54,7 @@ public class EventView extends View {
     /**
      * The left margin desired for this EventView
      *
-     * @return the left margin
+     * @return  The left margin
      */
     public int leftMargin() {
         return (int) (DayActivity.EVENT_LEFT_MARGIN * dm.density);
@@ -67,7 +64,6 @@ public class EventView extends View {
      * Initialize the Paint objects.
      */
     private void initializePaints() {
-
         Random rand = new Random(e.getOwner());
 
         int h = rand.nextInt(360);
@@ -94,28 +90,18 @@ public class EventView extends View {
     /**
      * Standard onMeasure
      *
-     * @param width
-     *            width
-     * @param height
-     *            height
+     * @param width   Width for this view
+     * @param height  Height for this view
      */
     public void onMeasure(int width, int height) {
-
         setMeasuredDimension(Math.max(width, (int) (180 * dm.density)),
                 eventHeight());
-
-        // Log.d("Tracker-Test", "input width=" + width + " height="
-        // + height);
-        // Log.d("Tracker-Test", "output width=" + width + " height="
-        // + eventHeight());
-
     }
 
     /**
      * Standard onDraw.
      *
-     * @param canvas
-     *            the canvas
+     * @param canvas  The canvas
      */
     public void onDraw(Canvas canvas) {
         if (e == null) {
@@ -129,16 +115,13 @@ public class EventView extends View {
                 titleText);
         canvas.drawText(e.getTimeInterval(), 5 * dm.density,
                 40 * dm.density, timeText);
-        // Log.d("Tracker-Test", "inside onDraw");
-
     }
 
     /**
      * Standard onTouchEvent
      *
-     * @param motionEvent
-     *            the MotionEvent
-     * @return whether the event is handled or not
+     * @param motionEvent  The MotionEvent
+     * @return whether     The event is handled or not
      */
     public boolean onTouchEvent(MotionEvent motionEvent) {
         if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
@@ -157,8 +140,8 @@ public class EventView extends View {
     /**
      * The position of this event
      *
-     * @return the distance in pixels between the top edge of the screen and the
-     *         top edge of this EventView
+     * @return  The distance in pixels between the top edge of the screen and
+     *          the top edge of this EventView
      */
     public int eventPos() {
         float sMin = Integer.parseInt(e.getStartTime().substring(2));
@@ -170,7 +153,7 @@ public class EventView extends View {
     /**
      * The height of this EventView.
      *
-     * @return the height in pixels of this EventView
+     * @return  The height in pixels of this EventView
      */
     public int eventHeight() {
         float sMin = Integer.parseInt(e.getStartTime().substring(2));

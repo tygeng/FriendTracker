@@ -10,17 +10,17 @@ import cs2114.group.friendtracker.data.DataSource;
 import android.os.Bundle;
 import android.app.Activity;
 
-// -------------------------------------------------------------------------
 /**
  * This activity edits the selected event or creates a new one for the selected
  * person
  *
- * @author Elena Nadolinski (elena)
- * @author Chris Schweinhart (schwein)
  * @author Tianyu Geng (tony1)
- * @version Apr 27, 2012
+ * @author Chris Schweinhart (schwein)
+ * @author Elena Nadolinski (elena)
+ * @version 2012.04.29
  */
 public class EditEventActivity extends Activity {
+    // Instance fields
     private EditText editTextEventName;
     private EditText editTextStartTime;
     private EditText editTextEndTime;
@@ -45,7 +45,7 @@ public class EditEventActivity extends Activity {
     private Button deleteButton;
 
     /**
-     * this declares all the needed fields. if the user clicked edit event then
+     * This declares all the needed fields. If the user clicked edit event then
      * the id of that event will be caught from the intent of the previous
      * activity, and will be used to fill in the information on the screen
      * for the user to easily edit that event
@@ -78,12 +78,12 @@ public class EditEventActivity extends Activity {
         Intent i = getIntent();
 
         ownerId = i.getLongExtra("personId", 0);
-        
+
         edit = (i.getLongExtra("id", 0) != 0);
 
         if (edit) {
             long eventId = i.getLongExtra("id", 0);
-            
+
             eventToEdit = src.getEvent(eventId);
 
             fillInfo();
@@ -93,28 +93,23 @@ public class EditEventActivity extends Activity {
             deleteButton.setVisibility(View.GONE);
         }
         src.close();
-
     }
 
-    // ----------------------------------------------------------
     /**
-     * called with the Done button is pressed. this updates the edited event.
+     * Method for when the done button is clicked; this updates the edited event
      *
-     * @param v
-     *            the button
+     * @param v  The button
      */
     public void doneButton(View v) {
-
         createNewEvent();
-
         finish();
-
     }
 
     /**
-     * called with the Delete button is pressed. this deletes the edited event.
+     * Method for when the delete button is clicked; this deletes the edited
+     * event.
      *
-     * @param v
+     * @param v  The button
      */
     public void deleteButton(View v) {
         src.open();
@@ -123,13 +118,11 @@ public class EditEventActivity extends Activity {
         finish();
     }
 
-    // ----------------------------------------------------------
     /**
-     * creates a new Event from the user's input in the GUI. either updates
-     * the selected event to be edited, or creates a new one in the datasource
+     * Creates a new Event from the user's input in the GUI. Either updates
+     * the selected event to be edited, or creates a new one in the datasource.
      */
     public void createNewEvent() {
-
         char[] days = new char[7];
         for (int i = 0; i < days.length; i++) {
             days[i] = '*';
@@ -177,12 +170,10 @@ public class EditEventActivity extends Activity {
             src.updateEvent(eventToEdit);
             src.close();
         }
-
     }
 
-    // ----------------------------------------------------------
     /**
-     * fills the info of the event to be edited
+     * Fills the info of the event to be edited
      */
     public void fillInfo() {
         editTextEventName.setText(eventToEdit.getName());

@@ -1,6 +1,3 @@
-/**
- *
- */
 package cs2114.group.friendtracker.testing;
 
 import java.util.List;
@@ -14,14 +11,15 @@ import cs2114.group.friendtracker.Person;
 import android.test.AndroidTestCase;
 
 /**
- * Test class for AndroidTestCase
+ * Test cases for the data source SQLite database.
  *
  * @author Tianyu Geng (tony1)
  * @author Chris Schweinhart (schwein)
  * @author Elena Nadolinski (elena)
- * @version Apr 17, 2012
+ * @version 2012.04.29
  */
 public class DataSourceTest extends AndroidTestCase {
+    // Instance fields
     private DataSource src;
 
     /**

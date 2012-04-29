@@ -9,18 +9,18 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.app.Activity;
 
-// -------------------------------------------------------------------------
 /**
- * this is the view friend activity that will display all the user's information
+ * This is the view friend activity that will display all the user's information
  *
- * @author Elena Nadolinski (elena)
- * @author Chris Schweinhart (schwein)
  * @author Tianyu Geng (tony1)
- * @version Apr 27, 2012
+ * @author Chris Schweinhart (schwein)
+ * @author Elena Nadolinski (elena)
+ * @version 2012.04.29
  */
 public class ViewFriendActivity
     extends Activity
 {
+    // Instance fields
     private DataSource          src;
 
     private TextView            textViewName;
@@ -30,8 +30,10 @@ public class ViewFriendActivity
 
 
     /**
-     * takes in the ownerId from the previous activity, and based off the id
+     * Takes in the ownerId from the previous activity, and based off the id
      * recreates the user's info and displays that on the screen
+     *
+     * @param savedInstanceState  The state for the parent
      */
     public void onCreate(Bundle savedInstanceState)
     {
@@ -60,22 +62,16 @@ public class ViewFriendActivity
         textViewPhoneNumber.setText("" + selectedPerson.getPhoneNumber());
         listViewEvents.setAdapter(adapter);
         src.close();
-
     }
 
-
-    // ----------------------------------------------------------
     /**
-     * when the activity is done, it closes the database, and finishes the
+     * When the activity is done, it closes the database, and finishes the
      * activity
      *
-     * @param v
-     *            the View
+     * @param v  The View
      */
     public void onClickDone(View v)
     {
-
         finish();
-
     }
 }

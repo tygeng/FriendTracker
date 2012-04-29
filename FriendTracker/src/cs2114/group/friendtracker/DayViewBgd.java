@@ -1,6 +1,3 @@
-/**
- *
- */
 package cs2114.group.friendtracker;
 
 import android.graphics.Color;
@@ -21,23 +18,19 @@ import android.view.View;
  * @author Tianyu Geng (tony1)
  * @author Chris Schweinhart (schwein)
  * @author Elena Nadolinski (elena)
- * @version Apr 21, 2012
+ * @version 2012.04.29
  */
 public class DayViewBgd extends View {
-
+    // Instance fields
     private DisplayMetrics dm;
-
     private Paint timeText;
     private Paint thickLines;
     private Paint thinLines;
 
-
-
     /**
      * Constructor for DayViewBgd.
      *
-     * @param c
-     *            the context
+     * @param c  The context
      */
     public DayViewBgd(Context c) {
         super(c);
@@ -50,13 +43,10 @@ public class DayViewBgd extends View {
     /**
      * Standard onMeasure.
      *
-     * @param width
-     *            width
-     * @param height
-     *            height
+     * @param width   Width of view
+     * @param height  Height of view
      */
     public void onMeasure(int width, int height) {
-
         setMeasuredDimension(width, (int) (24 * DayActivity.HOUR_HEIGHT * dm.density));
     }
 
@@ -79,8 +69,7 @@ public class DayViewBgd extends View {
     /**
      * Standard onDraw.
      *
-     * @param canvas
-     *            the canvas
+     * @param canvas  The canvas
      */
     public void onDraw(Canvas canvas) {
         int width = getWidth();
@@ -95,14 +84,13 @@ public class DayViewBgd extends View {
                     timeText);
             canvas.drawLine(0, y2, width, y2, thinLines);
         }
-
     }
 
     /**
      * Format the time needed.
      *
-     * @param hour
-     * @return
+     * @param hour  The hour to format
+     * @return      Formatted time string
      */
     private String formatTime(int h) {
         int hour = h;
@@ -115,5 +103,4 @@ public class DayViewBgd extends View {
         }
         return hour + ":00" + aux;
     }
-
 }

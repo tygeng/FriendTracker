@@ -20,7 +20,7 @@ import android.app.Activity;
  * @author Tianyu Geng (tony1)
  * @author Chris Schweinhart (schwein)
  * @author Elena Nadolinski (elena)
- * @version Apr 23, 2012
+ * @version 2012.04.29
  */
 public class DayActivity extends Activity {
     private DayModel model;
@@ -41,8 +41,7 @@ public class DayActivity extends Activity {
     /**
      * Called when the activity is created.
      *
-     * @param savedInstanceState
-     *            state
+     * @param savedInstanceState  The state for parent
      */
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -126,10 +125,9 @@ public class DayActivity extends Activity {
     }
 
     /**
-     * The addButton is clicked.
+     * Method for when the addButton is clicked.
      *
-     * @param addButton
-     *            the Button
+     * @param addButton  The button clicked
      */
     public void addButtonClicked(View addButton) {
 
@@ -142,10 +140,9 @@ public class DayActivity extends Activity {
     }
 
     /**
-     * The previousDay Button is clicked.
+     * Method for when the previousDay Button is clicked.
      *
-     * @param previousButton
-     *            the button
+     * @param previousButton  The button clicked
      */
     public void previousButtonClicked(View previousButton) {
         model.previousDay();
@@ -153,10 +150,9 @@ public class DayActivity extends Activity {
     }
 
     /**
-     * The nextDay Button is clicked.
+     * Method for when the nextDay Button is clicked.
      *
-     * @param nextButton
-     *            the button
+     * @param nextButton  The button clicked
      */
     public void nextButtonClicked(View nextButton) {
         model.nextDay();
@@ -164,15 +160,14 @@ public class DayActivity extends Activity {
     }
 
     /**
-     * The today button is clicked.
+     * Method for when the today button is clicked.
      *
-     * @param todayButton
-     *            the button
+     * @param todayButton  The button clicked
      */
     public void todayButtonClicked(View todayButton) {
         model.today();
         fillContents();
     }
 
-   
+
 }

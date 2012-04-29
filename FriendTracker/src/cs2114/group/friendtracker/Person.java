@@ -4,10 +4,10 @@ package cs2114.group.friendtracker;
  * This class represents any person in a contact list for the friend tracker app
  * for CS 2114.
  *
- * @author Chris Schweinhart (schwein)
  * @author Tianyu Geng (tony1)
+ * @author Chris Schweinhart (schwein)
  * @author Elena Nadolinski (elena)
- * @version 2012.04.27
+ * @version 2012.04.29
  */
 public class Person {
     // Instance fields
@@ -18,12 +18,9 @@ public class Person {
     /**
      * Constructor for the person class
      *
-     * @param id
-     *            The unique id of this person
-     * @param name
-     *            The name of this person
-     * @param phoneNumber
-     *            The phone number of this person
+     * @param id           The unique id of this person
+     * @param name         The name of this person
+     * @param phoneNumber  The phone number of this person
      */
     public Person(long id, String name, long phoneNumber) {
         this.id = id;
@@ -34,7 +31,7 @@ public class Person {
     /**
      * Getter for the id field
      *
-     * @return id The unique id of this person
+     * @return id  The unique id of this person
      */
     public long getId() {
         return id;
@@ -43,8 +40,7 @@ public class Person {
     /**
      * Setter for the name field
      *
-     * @param name
-     *            The new name for this person
+     * @param name  The new name for this person
      */
     public void setName(String name) {
         this.name = name;
@@ -53,7 +49,7 @@ public class Person {
     /**
      * Getter for the name field
      *
-     * @return name The name of this person
+     * @return name  The name of this person
      */
     public String getName() {
         return name;
@@ -62,8 +58,7 @@ public class Person {
     /**
      * Setter for the phone number field
      *
-     * @param phoneNumber
-     *            The new phone number for this person
+     * @param phoneNumber  The new phone number for this person
      */
     public void setPhoneNumber(long phoneNumber) {
         this.phoneNumber = phoneNumber;
@@ -72,7 +67,7 @@ public class Person {
     /**
      * Getter for the phone number field
      *
-     * @return phoneNumber The phone number of this person
+     * @return phoneNumber  The phone number of this person
      */
     public long getPhoneNumber() {
         return phoneNumber;
@@ -81,10 +76,9 @@ public class Person {
     /**
      * Standard toString()
      *
-     * @return String of this event
+     * @return  String of this event
      */
     public String toString() {
         return name + "\n" + "phone: " + phoneNumber;
-        // return "id="+id+" name="+ name;
     }
 }

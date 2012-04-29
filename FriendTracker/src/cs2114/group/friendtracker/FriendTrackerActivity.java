@@ -15,18 +15,18 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.view.View.OnClickListener;
 
-// -------------------------------------------------------------------------
 /**
  * This is the main activity. This displays the list of friends. Long click on a
  * friend gives options of editing, viewing, and deleting a friend. Clicking on
  * the add button allows the user to add a new friend
  *
- * @author Elena Nadolinski (elena)
  * @author Tianyu Geng (tony1)
  * @author Chris Schweinhart (schwein)
- * @version Apr 27, 2012
+ * @author Elena Nadolinski (elena)
+ * @version 2012.04.29
  */
 public class FriendTrackerActivity extends ListActivity {
+    // Instance fields
     private DataSource           src;
 
     private ArrayAdapter<Person> adapter;
@@ -34,7 +34,11 @@ public class FriendTrackerActivity extends ListActivity {
     private Button               addFriend;
 
 
-    /** Called when the activity is first created. */
+    /**
+     * Called when the activity is first created.
+     *
+     * @param savedInstanceState  The state for the parent
+     */
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
@@ -76,12 +80,11 @@ public class FriendTrackerActivity extends ListActivity {
 
             }
         });
-
     }
 
 
     /**
-     * resumes the database
+     * Resumes the database
      */
     public void onResume()
     {
@@ -99,10 +102,12 @@ public class FriendTrackerActivity extends ListActivity {
 
     }
 
-
     /**
-     * creates the long click menu. the menu entries can be found under values
-     * in strings.xml
+     * Creates the long click menu.
+     *
+     * @param menu      The context menu
+     * @param v         The view calling this method
+     * @param menuInfo  The info for the menu
      */
     @Override
     public void onCreateContextMenu(
@@ -110,7 +115,6 @@ public class FriendTrackerActivity extends ListActivity {
         View v,
         ContextMenuInfo menuInfo)
     {
-
         menu.add(Menu.NONE, 0, 0, "Edit");
         menu.add(Menu.NONE, 1, 1, "Delete");
         menu.add(Menu.NONE, 2, 2, "View");
@@ -118,11 +122,13 @@ public class FriendTrackerActivity extends ListActivity {
 
 
     /**
-     * sets actions for when the menu options are pressed. if the menu option 0
+     * Sets actions for when the menu options are pressed. If the menu option 0
      * is pressed, the user pressed "edit" so this will take the user to
-     * AddEditFriendActivity. if the menu option 1 was pressed, the user pressed
-     * "delete" so that contact will be deleted. if the menu option 2 is pressed
+     * AddEditFriendActivity. If the menu option 1 was pressed, the user pressed
+     * "delete" so that contact will be deleted. If the menu option 2 is pressed
      * the user pressed "view" so this will take the user to ViewFriendActivity
+     *
+     * @param item  The menu item pressed
      */
     @Override
     public boolean onContextItemSelected(MenuItem item)
@@ -163,9 +169,6 @@ public class FriendTrackerActivity extends ListActivity {
 
             return true;
         }
-
         return false;
-
     }
-
 }

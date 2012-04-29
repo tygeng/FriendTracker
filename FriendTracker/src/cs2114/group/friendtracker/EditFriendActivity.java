@@ -1,7 +1,6 @@
 package cs2114.group.friendtracker;
 
 import android.app.ListActivity;
-
 import android.view.MenuItem;
 import android.widget.AdapterView;
 import android.view.ContextMenu;
@@ -16,18 +15,18 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.os.Bundle;
 
-// -------------------------------------------------------------------------
 /**
  * This activity is responsible for editing an existing friend (such as
  * modifying events or adding new ones, or changing name/phone number) or adding
  * a new friend
  *
- * @author Elena Nadolinski (elena)
- * @author Chris Schweinhart (schwein)
  * @author Tianyu Geng (tony1)
- * @version Apr 27, 2012
+ * @author Chris Schweinhart (schwein)
+ * @author Elena Nadolinski (elena)
+ * @version 2012.04.29
  */
 public class EditFriendActivity extends ListActivity {
+    // Instance fields
     private TextView title;
     private EditText editTextName;
     private EditText editTextPhoneNumber;
@@ -37,6 +36,12 @@ public class EditFriendActivity extends ListActivity {
     private ArrayAdapter<Event> adapter;
     private boolean edit;
 
+    /**
+     * This declares all the needed fields. If the user clicked edit friend then
+     * the id of that friend will be caught from the intent of the previous
+     * activity, and will be used to fill in the information on the screen
+     * for the user to easily edit that friend
+     */
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.addfriend);
@@ -74,10 +79,15 @@ public class EditFriendActivity extends ListActivity {
 
         }
         registerForContextMenu(listView);
-
     }
 
-    @Override
+    /**
+     * Method to create a context menu for options
+     *
+     * @param menu      The context menu
+     * @param v         The view calling this method
+     * @param menuInfo  The info for the menu
+     */
     public void onCreateContextMenu(ContextMenu menu, View v,
             ContextMenuInfo menuInfo) {
         menu.add(Menu.NONE, 1, 1, "Delete");
@@ -85,6 +95,12 @@ public class EditFriendActivity extends ListActivity {
 
     }
 
+    /**
+     * Determines which context menu choice was pressed and takes action
+     *
+     * @param item  The menu item chosen
+     * @return      Whether or not the event was handled
+     */
     public boolean onContextItemSelected(MenuItem item) {
         AdapterView.AdapterContextMenuInfo info =
                 (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
@@ -115,19 +131,15 @@ public class EditFriendActivity extends ListActivity {
             return true;
 
         }
-
         return false;
-
     }
 
-    // ----------------------------------------------------------
     /**
-     * if this activity is modifying a person, the person must be updated in the
-     * database. then the activity finishes and the last activity is brought
+     * If this activity is modifying a person, the person must be updated in the
+     * database. Then the activity finishes and the last activity is brought
      * back on the screen
      *
-     * @param v
-     *            the view
+     * @param v  The view
      */
     public void onClickDone(View v) {
         src.open();
@@ -146,16 +158,13 @@ public class EditFriendActivity extends ListActivity {
         else {
             createPerson();
         }
-
         src.close();
         finish();
-
     }
 
-    // ----------------------------------------------------------
     /**
-     * called if the person isn't created (aka if the user is adding a new
-     * person). this creates a new person and puts him in the database
+     * Called if the person isn't created (if the user is adding a new
+     * person). This creates a new person and puts him in the database
      */
     public void createPerson() {
         int phoneNumber = 0;
@@ -174,17 +183,14 @@ public class EditFriendActivity extends ListActivity {
         src.close();
     }
 
-    // ----------------------------------------------------------
     /**
-     * called when the add Events button is clicked. this adds the previously
+     * Called when the add event button is clicked. This adds the previously
      * inputed event into the database by calling createNewEvent() helper
      * method, then clears all the entries for more events to be added
      *
-     * @param v
-     *            the View
+     * @param v  The View
      */
     public void onClickAddMoreEvents(View v) {
-
         if (person == null) {
             edit = true;
             createPerson();
@@ -197,11 +203,10 @@ public class EditFriendActivity extends ListActivity {
         viewScreen.putExtra("personId", person.getId());
 
         startActivity(viewScreen);
-
     }
 
     /**
-     * for resuming the database
+     * Method for resuming the database
      */
     public void onResume() {
         super.onResume();
@@ -214,6 +219,4 @@ public class EditFriendActivity extends ListActivity {
             listView.setAdapter(adapter);
         }
     }
-
-
 }
