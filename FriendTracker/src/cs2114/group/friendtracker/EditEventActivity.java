@@ -1,7 +1,5 @@
 package cs2114.group.friendtracker;
 
-import android.util.Log;
-
 import android.widget.Button;
 
 import android.content.Intent;
@@ -14,7 +12,8 @@ import android.app.Activity;
 
 // -------------------------------------------------------------------------
 /**
- * This activity edits the selected event
+ * This activity edits the selected event or creates a new one for the selected
+ * person
  *
  * @author Elena Nadolinski (elena)
  * @author Chris Schweinhart (schwein)
@@ -46,8 +45,10 @@ public class EditEventActivity extends Activity {
     private Button deleteButton;
 
     /**
-     * this declares all the needed fields, and gets the id of the event to set
-     * the event that needs to be modified
+     * this declares all the needed fields. if the user clicked edit event then
+     * the id of that event will be caught from the intent of the previous
+     * activity, and will be used to fill in the information on the screen
+     * for the user to easily edit that event
      */
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,12 +78,12 @@ public class EditEventActivity extends Activity {
         Intent i = getIntent();
 
         ownerId = i.getLongExtra("personId", 0);
-        Log.d("EditEventActivty", "owner id=" + ownerId);
+        
         edit = (i.getLongExtra("id", 0) != 0);
 
         if (edit) {
             long eventId = i.getLongExtra("id", 0);
-            Log.d("EditEventActivty", "event id=" + eventId);
+            
             eventToEdit = src.getEvent(eventId);
 
             fillInfo();
@@ -124,7 +125,8 @@ public class EditEventActivity extends Activity {
 
     // ----------------------------------------------------------
     /**
-     * creates a new Event from the user's input in the GUI
+     * creates a new Event from the user's input in the GUI. either updates
+     * the selected event to be edited, or creates a new one in the datasource
      */
     public void createNewEvent() {
 

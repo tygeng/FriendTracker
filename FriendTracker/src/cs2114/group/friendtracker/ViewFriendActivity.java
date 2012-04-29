@@ -48,7 +48,6 @@ public class ViewFriendActivity
         Intent i = getIntent();
         // Receiving the Data
         long ownerId = i.getLongExtra("id",0);
-
         Person selectedPerson = src.getPerson(ownerId);
 
         adapter =

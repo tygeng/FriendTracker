@@ -174,30 +174,5 @@ public class DayActivity extends Activity {
         fillContents();
     }
 
-    // public class EventTouchListener implements EventView.OnTouchListener {
-    //
-    // /**
-    // * @param v
-    // * @param event
-    // * @return
-    // */
-    // @Override
-    // public boolean onTouch(View v, MotionEvent event) {
-    // Log.d("DayActivity","inside ontouchListener");
-    // if (event.getAction() == MotionEvent.ACTION_UP) {
-    // Intent editEvent =
-    // new Intent(getApplicationContext(),
-    // EditEventActivity.class);
-    // editEvent.putExtra("id", ((EventView) v).getEvent()
-    // .getId() + "");
-    // editEvent.putExtra("personId", ((EventView) v).getEvent()
-    // .getOwner() + "");
-    // startActivity(editEvent);
-    //
-    // return true;
-    // }
-    // return false;
-    // }
-    //
-    // }
+   
 }
