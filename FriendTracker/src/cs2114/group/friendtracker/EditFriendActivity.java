@@ -1,9 +1,7 @@
 package cs2114.group.friendtracker;
 
 import android.app.ListActivity;
-import android.view.ViewGroup;
-import android.view.View.MeasureSpec;
-import android.widget.ListAdapter;
+
 import android.view.MenuItem;
 import android.widget.AdapterView;
 import android.view.ContextMenu;
@@ -217,38 +215,5 @@ public class EditFriendActivity extends ListActivity {
         }
     }
 
-    // ----------------------------------------------------------
-    /**
-     * Since the listview can't expand when items are added to it when embedded
-     * in scrollview, this method manually sets the size of the listview so the
-     * listview expands when events are added
-     *
-     * @param listView
-     */
-    public static void
-            setListViewHeightBasedOnChildren(ListView listView) {
-        ListAdapter listAdapter = listView.getAdapter();
-        if (listAdapter == null) {
-            // pre-condition
-            return;
-        }
 
-        int totalHeight = 0;
-        int desiredWidth =
-                MeasureSpec.makeMeasureSpec(listView.getWidth(),
-                        MeasureSpec.AT_MOST);
-        for (int i = 0; i < listAdapter.getCount(); i++) {
-            View listItem = listAdapter.getView(i, null, listView);
-            listItem.measure(desiredWidth, MeasureSpec.UNSPECIFIED);
-            totalHeight += listItem.getMeasuredHeight();
-        }
-
-        ViewGroup.LayoutParams params = listView.getLayoutParams();
-        params.height =
-                totalHeight
-                        + (listView.getDividerHeight() * (listAdapter
-                                .getCount() - 1));
-        listView.setLayoutParams(params);
-        listView.requestLayout();
-    }
 }

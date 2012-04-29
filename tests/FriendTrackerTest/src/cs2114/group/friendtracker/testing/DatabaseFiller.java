@@ -190,7 +190,7 @@ public class DatabaseFiller {
 
         src.createEvent("event1", p1.getId(), "0800", "1000", "20120101",
                 "20121231", "1111111");
-        src.createEvent("event1", p1.getId(), "1100", "1200", "20120101",
+        src.createEvent("event2", p1.getId(), "1100", "1200", "20120101",
                 "20121231", "1111111");
         src.close();
     }

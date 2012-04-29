@@ -132,6 +132,7 @@ public class AddEventActivityTest extends
         assertEquals("1600", src.getEvent(3).getEndTime());
         assertEquals("20120101", src.getEvent(3).getStartDate());
         assertEquals("20121231", src.getEvent(3).getEndDate());
+        assertEquals("1111111", new String(src.getEvent(3).getDays()));
         src.close();
 
     }
