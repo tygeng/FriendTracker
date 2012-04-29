@@ -1,5 +1,7 @@
 package cs2114.group.friendtracker;
 
+import android.util.Log;
+
 import android.widget.Button;
 
 import android.content.Intent;
@@ -74,12 +76,13 @@ public class EditEventActivity extends Activity {
 
         Intent i = getIntent();
 
-        ownerId = i.getLongExtra("personId",0);
-
-        edit = (i.getLongExtra("id",0) != 0);
+        ownerId = i.getLongExtra("personId", 0);
+        Log.d("EditEventActivty", "owner id=" + ownerId);
+        edit = (i.getLongExtra("id", 0) != 0);
 
         if (edit) {
-            long eventId = i.getLongExtra("id",0);
+            long eventId = i.getLongExtra("id", 0);
+            Log.d("EditEventActivty", "event id=" + eventId);
             eventToEdit = src.getEvent(eventId);
 
             fillInfo();
