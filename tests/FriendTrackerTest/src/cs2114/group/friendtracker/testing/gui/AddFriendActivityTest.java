@@ -3,6 +3,7 @@
  */
 package cs2114.group.friendtracker.testing.gui;
 
+import static android.view.KeyEvent.*;
 import cs2114.group.friendtracker.testing.DatabaseFiller;
 
 import cs2114.group.friendtracker.data.DataSource;
@@ -18,8 +19,11 @@ import cs2114.group.friendtracker.EditFriendActivity;
 import student.AndroidTestCase;
 
 /**
+ * Test class for AddFriendActivity.
  *
  * @author Tianyu Geng (tony1)
+ * @author Elena Nadolinski (elena)
+ * @author Chris Schweinhart (schwein)
  * @version Apr 29, 2012
  */
 public class AddFriendActivityTest extends
@@ -27,6 +31,7 @@ public class AddFriendActivityTest extends
     private EditText name;
     private EditText phone;
     private Button done;
+    private Button addBtn;
     private EditFriendActivity activity;
     private DataSource src;
 
@@ -38,12 +43,16 @@ public class AddFriendActivityTest extends
 
     }
 
+    /**
+     *
+     */
     public void setUp() {
         activity = getActivity();
         src = new DataSource(activity);
         name = getView(EditText.class, R.id.editTextName);
         phone = getView(EditText.class, R.id.editTextPhoneNumber);
         done = getView(Button.class, R.id.doneButton);
+        addBtn = getView(Button.class, R.id.addEventButton);
     }
 
     /**
@@ -54,12 +63,24 @@ public class AddFriendActivityTest extends
 
     }
 
+    /**
+     * Test add a friend.
+     */
     public void testAddFriend() {
         assertTrue(name.getText().toString().isEmpty());
         assertTrue(phone.getText().toString().isEmpty());
 
         enterText(name, "new person");
         enterText(phone, "540540540");
+
+        click(addBtn);
+        sendKeys(KEYCODE_E, KEYCODE_1, KEYCODE_DPAD_DOWN,
+                KEYCODE_DPAD_DOWN, KEYCODE_DPAD_DOWN, KEYCODE_DPAD_DOWN,
+                KEYCODE_DPAD_DOWN, KEYCODE_DPAD_DOWN, KEYCODE_DPAD_DOWN,
+                KEYCODE_DPAD_CENTER);
+        src.open();
+        assertEquals("e1", src.getEvent(3).getName());
+        src.close();
 
         click(done);
 
@@ -68,6 +89,8 @@ public class AddFriendActivityTest extends
         assertEquals(540540540l, src.getPerson(2).getPhoneNumber());
 
         src.close();
+
+
     }
 
 }

@@ -3,28 +3,22 @@
  */
 package cs2114.group.friendtracker.testing.gui;
 
-import android.view.View;
-
 import cs2114.group.friendtracker.testing.DatabaseFiller;
-
 import cs2114.group.friendtracker.R;
-
 import android.content.Intent;
-
 import cs2114.group.friendtracker.data.DataSource;
-
 import android.widget.Button;
-
 import android.widget.CheckBox;
-
 import android.widget.EditText;
-
 import student.AndroidTestCase;
 import cs2114.group.friendtracker.EditEventActivity;
 
 /**
+ * Test class for EditEventActivity.
  *
  * @author Tianyu Geng (tony1)
+ * @author Elena Nadolinski (elena)
+ * @author Chris Schweinhart (schwein)
  * @version Apr 29, 2012
  */
 public class AddEventActivityTest extends
@@ -49,9 +43,16 @@ public class AddEventActivityTest extends
 
     private DataSource src;
 
+    /**
+     * Constructor for AddEventActivityTest.
+     */
     public AddEventActivityTest() {
         super(EditEventActivity.class);
     }
+
+    /**
+     * Set up the test cases.
+     */
 
     public void setUp() {
         Intent i =
@@ -62,28 +63,21 @@ public class AddEventActivityTest extends
         activity = getActivity();
         src = new DataSource(activity.getApplicationContext());
 
-        editName =
-                (EditText) getView(EditText.class, R.id.editTextEventName);
-        editSTime =
-                (EditText) getView(EditText.class, R.id.editTextStartTime);
-        editETime =
-                (EditText) getView(EditText.class, R.id.editTextEndTime);
-        editSDate =
-                (EditText) getView(EditText.class, R.id.editTextStartDate);
-        editEDate =
-                (EditText) getView(EditText.class, R.id.editTextEndDate);
+        editName = getView(EditText.class, R.id.editTextEventName);
+        editSTime = getView(EditText.class, R.id.editTextStartTime);
+        editETime = getView(EditText.class, R.id.editTextEndTime);
+        editSDate = getView(EditText.class, R.id.editTextStartDate);
+        editEDate = getView(EditText.class, R.id.editTextEndDate);
 
-        checkBoxM = (CheckBox) getView(CheckBox.class, R.id.checkBoxM);
-        checkBoxT = (CheckBox) getView(CheckBox.class, R.id.checkBoxT);
-        checkBoxW = (CheckBox) getView(CheckBox.class, R.id.checkBoxW);
-        checkBoxTh = (CheckBox) getView(CheckBox.class, R.id.checkBoxTh);
-        checkBoxF = (CheckBox) getView(CheckBox.class, R.id.checkBoxF);
-        checkBoxSat =
-                (CheckBox) getView(CheckBox.class, R.id.checkBoxSat);
-        checkBoxSun =
-                (CheckBox) getView(CheckBox.class, R.id.checkBoxSun);
+        checkBoxM = getView(CheckBox.class, R.id.checkBoxM);
+        checkBoxT = getView(CheckBox.class, R.id.checkBoxT);
+        checkBoxW = getView(CheckBox.class, R.id.checkBoxW);
+        checkBoxTh = getView(CheckBox.class, R.id.checkBoxTh);
+        checkBoxF = getView(CheckBox.class, R.id.checkBoxF);
+        checkBoxSat = getView(CheckBox.class, R.id.checkBoxSat);
+        checkBoxSun = getView(CheckBox.class, R.id.checkBoxSun);
 
-        doneButton = (Button) getView(Button.class, R.id.eventDoneButton);
+        doneButton = getView(Button.class, R.id.eventDoneButton);
     }
 
     /**
@@ -94,6 +88,9 @@ public class AddEventActivityTest extends
 
     }
 
+    /**
+     * Test adding an event.
+     */
     public void testAddEvent() {
         assertTrue(editName.getText().toString().isEmpty());
         assertTrue(editSTime.getText().toString().isEmpty());

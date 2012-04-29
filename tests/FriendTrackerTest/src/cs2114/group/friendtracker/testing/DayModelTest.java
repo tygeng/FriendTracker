@@ -48,6 +48,14 @@ public class DayModelTest extends AndroidTestCase {
     }
 
     /**
+     * Bring the database back to the original state.
+     */
+    public void tearDown() {
+        DatabaseFiller.staticFill(src);
+
+    }
+
+    /**
      * Tests the setters and getters of various fields
      */
     public void testSettersAndGetters() {
@@ -71,7 +79,8 @@ public class DayModelTest extends AndroidTestCase {
 
         model.today();
         GregorianCalendar gc = new GregorianCalendar();
-        assertEquals(model.getDate(), (gc.get(MONTH)+1) + "/" + gc.get(DATE)
-                + "/" + "2012 " + DAYS[gc.get(DAY_OF_WEEK)]);
+        assertEquals(model.getDate(),
+                (gc.get(MONTH) + 1) + "/" + gc.get(DATE) + "/" + "2012 "
+                        + DAYS[gc.get(DAY_OF_WEEK)]);
     }
 }
