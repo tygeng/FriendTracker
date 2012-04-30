@@ -134,7 +134,7 @@ public class DayActivity extends Activity {
         Intent addEvent =
                 new Intent(getApplicationContext(),
                         EditEventActivity.class);
-        addEvent.putExtra("personId", model.getOwnerId() + "");
+        addEvent.putExtra("personId", model.getOwnerId());
 
         startActivity(addEvent);
     }
